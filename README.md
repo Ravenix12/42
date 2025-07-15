@@ -11,3 +11,4 @@ Completed
 In Progress
 - fdf
 - Push-swap
+- Pipex
