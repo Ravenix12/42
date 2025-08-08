@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:27:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/06 18:16:52 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:00:12 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,17 @@ void	add_node(t_llist **lst, int data)
 	new->prev = *lst;
 	new->data = data;
 }
+
+void	free_ll(t_llist *lst)
+{
+	t_llist	*tmp;
+
+	tmp = lst;
+	while(lst != NULL)
+	{
+		tmp = lst;
+		lst = lst->next;
+		free(lst);
+	}
+}
+

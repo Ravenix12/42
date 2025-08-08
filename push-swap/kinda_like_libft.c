@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   kinda_like_libft.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/07 17:41:52 by smariapp          #+#    #+#             */
+/*   Updated: 2025/08/07 17:46:17 by smariapp         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	ft_isspace(char c)
+{
+	if (c >= 9 && c <= 13)
+		return (1);
+	return (0);
+}
+
+long	ft_atoi_long(const char *nptr)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (ft_strncmp(nptr, "-2147483648", 12) == 0)
+		return (-2147483648);
+	if (*nptr == '-')
+		sign = -1;
+	if (*nptr == '-' || *nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = (result * 10) + *nptr - '0';
+		nptr++;
+	}
+	return (sign * result);
+}
+
+void	free_arr(char **arr)
+{
+	char	**tmp;
+
+	tmp = arr;
+	while (*arr != NULL)
+	{
+		free(*arr);
+		arr++;
+	}
+	free(tmp);
+}
