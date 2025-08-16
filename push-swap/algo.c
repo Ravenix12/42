@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:03:42 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/14 18:21:56 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/16 21:00:11 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	entry_function(t_llist *stack_a)
 	//nodes = count_nodes(stack_a);
 	push(&stack_b, &stack_a, 'b');
 	push(&stack_b, &stack_a, 'b');
-	print_ll(stack_b);
+	//print_ll(stack_b);
 }

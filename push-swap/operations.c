@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:34:21 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/14 18:22:35 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/16 21:14:35 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,58 @@ void	swap_both(t_llist *stack_a, t_llist *stack_b)
 	write_ps('s', 's');
 }
 
+t_llist*	extract_node_to_push(t_llist **stack)
+{
+	t_llist	*temp;
+
+	temp = *stack;
+	*stack = temp->next;
+	if (*stack == NULL && temp->prev != NULL)
+	{
+		*stack = ft_llst_ht(temp, 'h');
+		if (temp->prev != NULL)
+			temp->prev->next = NULL;
+	}
+	else if (*stack == NULL && temp->prev == NULL)
+		*stack = NULL;
+	else if (*stack != NULL && temp->prev != NULL)
+	{
+		(*stack)->prev = temp->prev;
+		temp->prev->next = (*stack)->prev;
+	}
+	else if (*stack != NULL && temp->prev == NULL)
+		(*stack)->prev = NULL;
+	return (temp) ;
+}
+
 // [push from 2 to 1]
-void	push(t_llist **stack_1, t_llist **stack_2, char c)
+void	push(t_llist **p_to, t_llist **p_from, char c)
 {
 	t_llist	*to_swap;
 	t_llist	*temp;
 
-	if (*stack_2 == NULL)
+	if (*p_from == NULL)
 		return ;
-	if (*stack_1 == NULL)
+	if (*p_to == NULL)
 	{
-		*stack_1 = *stack_2;
-		temp = (*stack_2)->prev;
-		if (temp != NULL)
-			temp->next = (*stack_2)->next;
-		if ((*stack_2)->next != NULL)
-			(*stack_2)->next->prev = temp;
-		(*stack_1)->next = NULL;
-		(*stack_1)->prev = NULL; 
-		return;
+		to_swap = extract_node_to_push(p_from);
+		to_swap->next = NULL;
+		to_swap->prev = NULL;
+		*p_to = to_swap;
 	}
-	to_swap = *stack_2;
-	temp = (*stack_2)->next;
-	temp->prev = to_swap->prev;
-	to_swap->prev->next = temp;
-	temp = (*stack_1)->prev;
-	temp->next = to_swap;
-	to_swap->next = *stack_1;
-	to_swap->prev = temp;
-	(*stack_1)->prev = to_swap;
+	else
+	{
+		to_swap = extract_node_to_push(p_from);
+		temp = (*p_to)->prev;
+		(*p_to)->prev = to_swap;
+		if (temp != NULL)
+			temp->next = to_swap;
+		to_swap->prev = temp;
+		to_swap->next = *p_to;
+		*p_to = to_swap;
+	}
 	write_ps('p', c);
+	return ;
 }
 
 t_llist	*rotate(t_llist *stack_1, int dir)

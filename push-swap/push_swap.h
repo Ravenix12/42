@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:23:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/14 18:19:57 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/16 20:33:26 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_llist
 //operations.c
 void	swap(t_llist *lst, int both, char c);
 void	swap_both(t_llist *stack_a, t_llist *stack_b);
+t_llist*	extract_node_to_push(t_llist **stack_2);
 void	push(t_llist **stack_1, t_llist **stack_2, char c);
 t_llist	*rotate(t_llist *stack_1, int dir);
 //push-swap.c
