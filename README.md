@@ -7,8 +7,9 @@ Completed with bonus
 ###
 Completed
 - Printf
+- Pipex
 ###
 In Progress
 - fdf
 - Push-swap
-- Pipex
+
