@@ -6,7 +6,7 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/06 16:34:39 by smariapp          #+#    #+#              #
-#    Updated: 2025/08/07 21:08:44 by smariapp         ###   ########.fr        #
+#    Updated: 2025/08/14 16:41:54 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,32 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SOURCES = push_swap.c operations.c linkedlist.c kinda_like_libft.c input_validity.c\
-		Libft/ft_atoi.c Libft/ft_split.c Libft/ft_isdigit.c \
-		Libft/ft_strchr.c Libft/ft_strncmp.c 
+LIBFT_DIR = ./Libft/
+LIBFT = $(LIBFT_DIR)libft.a
 
+SOURCES = push_swap.c operations.c linkedlist.c kinda_like_libft.c input_validity.c \
+		writes.c indexing.c algo.c 
+		
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-		$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+$(NAME): $(OBJECTS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJECTS) -L$(LIBFT_DIR) -lft -o $(NAME)
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJECTS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME) $(OBJECTS)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

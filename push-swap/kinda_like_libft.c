@@ -6,15 +6,15 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 17:41:52 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/07 17:46:17 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/12 19:11:44 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isspace(char c)
+int	ft_isspace_or_sign(char c)
 {
-	if (c >= 9 && c <= 13)
+	if ((c >= 9 && c <= 13) || c == '-' || c == '+')
 		return (1);
 	return (0);
 }
@@ -22,7 +22,7 @@ int	ft_isspace(char c)
 long	ft_atoi_long(const char *nptr)
 {
 	long	result;
-	int		sign;
+	long	sign;
 
 	result = 0;
 	sign = 1;
@@ -37,6 +37,8 @@ long	ft_atoi_long(const char *nptr)
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		result = (result * 10) + *nptr - '0';
+		if ((result * sign) > (long)INT_MAX || (result * sign) < (long)INT_MIN)
+			return ((long)INT_MAX + 2);
 		nptr++;
 	}
 	return (sign * result);

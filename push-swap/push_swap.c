@@ -6,48 +6,55 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:34:35 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/07 21:07:58 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:22:47 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_llist **lst)
+int	is_sorted(t_llist *lst)
 {
 	int	prev;
 
-	if (!lst || !*lst)
+	if (!lst)
 		return (-1);
-	while (*lst != NULL)
+	while (lst != NULL)
 	{
-		if ((*lst)->prev == NULL)
+		if (lst->prev == NULL)
 		{
-			prev = (*lst)->data;
-			*lst = (*lst)->next;
+			prev = lst->data;
+			lst = lst->next;
 		}
 		else
 		{
-			if ((*lst)->data > prev)
-				*lst = (*lst)->next;
+			if (lst->data > prev)
+			{
+				prev = lst->data;
+				lst = lst->next;
+			}
 			else
 				return (0);
 		}
 	}
 	return (1);
 }
-void	string_input(char *argvi, t_llist **lst)
+
+void	multi_input(char *argvi, t_llist **lst)
 {
 	char	**split_res;
 	int		j;
 
+	if (ft_strncmp(argvi, "", 1) == 0)
+		return ;
 	split_res = ft_split(argvi, ' ');
 	j = 0;
 	while (split_res[j] != NULL)
 	{
-		if (!is_valid(split_res[j], lst))		
+		if (!is_valid(split_res[j], lst))
 		{
-			write(1, "invalid input\n", 15);
+			write(2, "Error\n", 7);
 			free_arr(split_res);
+			free_ll(*lst);
 			exit(1);
 		}
 		add_node(lst, ft_atoi(split_res[j]));
@@ -56,17 +63,30 @@ void	string_input(char *argvi, t_llist **lst)
 	free_arr(split_res);
 }
 
+void	single_input(char *argvi, t_llist **lst)
+{
+	if (ft_strncmp(argvi, "", 1) == 0)
+		return ;
+	if (!is_valid(argvi, lst))
+	{
+		write(2, "Error\n", 7);
+		free_ll(*lst);
+		exit(1);
+	}
+	add_node(lst, ft_atoi(argvi));
+}
+
 void	init_ll(char **argv, t_llist **lst)
 {
 	int		i;
 
 	i = 1;
-	while (argv[i] != NULL)
+	while (argv[i] != NULL && *argv[i] != '\0')
 	{
 		if (ft_strchr(argv[i], ' ') != NULL)
-			string_input(argv[i], lst);
+			multi_input(argv[i], lst);
 		else
-			add_node(lst, ft_atoi(argv[i]));
+			single_input(argv[i], lst);
 		i++;
 	}
 }
@@ -77,15 +97,18 @@ int	main(int argc, char **argv)
 
 	lst = NULL;
 	if (argc < 2 || !argv)
-		return (1);
+		return ((int)write(2, "Error\n", 7));
 	else
 	{
 		init_ll(argv, &lst);
-		if (!is_sorted(&lst))
+		printf("Successfully exited init\n");
+		if (!is_sorted(lst))
 		{
 			//go into algo;
-			printf("not sorted\n");
+			add_index(lst);
+			entry_function(lst);
 		}
+		free_ll(lst);
 	}
 	return (0);
 }
