@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:18:50 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/13 16:36:35 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/20 19:51:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,18 @@ void	write_ps(char ps, char c)
 	write(1, "\n", 1);
 }
 
-void	write_rotate(char c)
+void	write_rot(int dir, char c)
 {
-	write(1, "rr", 1);
-	write(1, &c, 1);
-	write(1, "\n", 1);
+	if (dir == -1)
+	{
+		write(1, "rr", 2);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+	}
+	else
+	{
+		write(1, "r", 1);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:27:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/14 18:22:11 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:22:49 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,14 @@ t_llist	*ft_llst_ht(t_llist *lst, char ht)
 {
 	if (ht == 'h')
 	{
-		while (lst && lst->prev)
-		{
-			lst = lst->prev;
-		}
+		while (lst && lst->p)
+			lst = lst->p;
 		return (lst);
 	}
 	else if (ht == 't')
 	{
-		while (lst && lst->next)
-		{
-			lst = lst-> next;
-		}
+		while (lst && lst->n != NULL)
+			lst = lst-> n;
 		return (lst);
 	}
 	return (NULL);
@@ -43,17 +39,17 @@ void	add_node(t_llist **lst, int data)
 	if (!*lst)
 	{
 		*lst = new;
-		new->prev = NULL;
+		new->p = NULL;
 		new->data = data;
-		new->index = -1;
-		new->next = NULL;
+		new->ix = -1;
+		new->n = NULL;
 		return ;
 	}
-	new->prev = ft_llst_ht(*lst, 't');
+	new->p = ft_llst_ht(*lst, 't');
 	new->data = data;
-	new->index = -1;
-	new->next = NULL;
-	ft_llst_ht(*lst, 't')->next = new;
+	new->ix = -1;
+	new->n = NULL;
+	ft_llst_ht(*lst, 't')->n = new;
 }
 
 void	free_ll(t_llist *lst)
@@ -64,7 +60,7 @@ void	free_ll(t_llist *lst)
 	while (lst != NULL)
 	{
 		tmp = lst;
-		lst = lst->next;
+		lst = lst->n;
 		free(tmp);
 	}
 }
@@ -77,7 +73,7 @@ int	count_nodes(t_llist *lst)
 	while (lst != NULL)
 	{
 		i++;
-		lst = lst->next;
+		lst = lst->n;
 	}
 	return (i);
 }
@@ -87,7 +83,7 @@ void	print_ll(t_llist *lst)//remove
 	while (lst != NULL)
 	{
 		printf("data: %d\n", lst->data);
-		printf("index: %d\n", lst->index);
-		lst = lst->next;
+		printf("index: %d\n", lst->ix);
+		lst = lst->n;
 	}
 }

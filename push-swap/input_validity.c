@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 19:13:25 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/12 19:28:48 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:23:15 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_dup(int num, t_llist *lst)
 		if (lst->data == num)
 			return (0);
 		else
-			lst = lst->next;
+			lst = lst->n;
 	}
 	return (1);
 }

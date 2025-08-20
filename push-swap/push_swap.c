@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:34:35 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/14 17:22:47 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:21:05 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	is_sorted(t_llist *lst)
 {
-	int	prev;
+	int	p;
 
 	if (!lst)
 		return (-1);
 	while (lst != NULL)
 	{
-		if (lst->prev == NULL)
+		if (lst->p == NULL)
 		{
-			prev = lst->data;
-			lst = lst->next;
+			p = lst->data;
+			lst = lst->n;
 		}
 		else
 		{
-			if (lst->data > prev)
+			if (lst->data > p)
 			{
-				prev = lst->data;
-				lst = lst->next;
+				p = lst->data;
+				lst = lst->n;
 			}
 			else
 				return (0);
@@ -104,7 +104,6 @@ int	main(int argc, char **argv)
 		printf("Successfully exited init\n");
 		if (!is_sorted(lst))
 		{
-			//go into algo;
 			add_index(lst);
 			entry_function(lst);
 		}

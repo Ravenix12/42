@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 19:36:11 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/13 21:46:30 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:23:31 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	indexing(t_llist *lst, int *arr, int nodes)
 		{
 			if (arr[i] == lst->data)
 			{
-				lst->index = i;
+				lst->ix = i;
 				break ;
 			}
 			i++;
 		}
-		lst = lst->next;
+		lst = lst->n;
 	}
 }
 
@@ -71,7 +71,7 @@ void	add_index(t_llist *lst)
 	{
 		arr[i] = lst->data;
 		i++;
-		lst = lst->next;
+		lst = lst->n;
 	}
 	sort_arr(arr, nodes);
 	indexing(head, arr, nodes);
