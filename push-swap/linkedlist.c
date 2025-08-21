@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:27:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/20 20:22:49 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:45:01 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_ll(t_llist *lst)//remove
 	while (lst != NULL)
 	{
 		printf("data: %d\n", lst->data);
-		printf("index: %d\n", lst->ix);
+		//printf("index: %d\n", lst->ix);
 		lst = lst->n;
 	}
 }

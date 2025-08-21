@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:34:21 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/20 22:04:35 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:06:34 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	rotate_no_space(t_llist **stack, int dir)
 		temp->n = lst;
 		lst->n->p = NULL;
 		lst->n = NULL;
+		lst->p = temp;
 		*stack = ft_llst_ht(lst, 'h');
 	}
 	else if (dir <= 0)
@@ -114,12 +115,12 @@ void	rotate_no_space(t_llist **stack, int dir)
 		lst->p = temp;
 		temp->n = lst;
 		temp->p = NULL;
-		*stack = temp;
+		*stack = ft_llst_ht(lst, 'h');
 	}
 }
 
 // 1:ra -1:rra
-void	rotate(t_llist **stack, int dir, char c)
+void	rotate(t_llist **stack, int dir, char c, int both)
 {
 	int		nodes;
 	t_llist	*lst;
@@ -134,5 +135,13 @@ void	rotate(t_llist **stack, int dir, char c)
 		return ;
 	}
 	rotate_no_space(stack, dir);
-	write_rot(dir, c);
+	if (!both)
+		write_rot(dir, c);
+}
+
+void	rotate_both(t_llist **stack_a, t_llist **stack_b, int dir)
+{
+	rotate(stack_a, dir, 'a', 1);
+	rotate(stack_b, dir, 'a', 1);
+	write_rot(dir, 'r');
 }

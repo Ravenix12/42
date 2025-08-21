@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 19:13:25 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/20 20:23:15 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/21 17:20:28 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ int	zero_check(char *num)
 		return (1);
 	else if (ft_strncmp("+0", num, 3) == 0 || ft_strncmp("-0", num, 3) == 0)
 		return (1);
+	else if (*num == '+' || *num == '-' || *num == '0')
+	{
+		num++;
+		while (*num != '\0')
+		{
+			if (*num != '0')
+				return (0);
+			num++ ;
+		}
+		return (1);
+	}
 	return (0);
 }
 

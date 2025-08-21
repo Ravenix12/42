@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:34:35 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/20 20:21:05 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:04:37 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		init_ll(argv, &lst);
-		printf("Successfully exited init\n");
+		printf("Successfully exited init\n"); //remove
 		if (!is_sorted(lst))
 		{
 			add_index(lst);
