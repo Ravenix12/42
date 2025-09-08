@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/08 19:07:10 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/14 21:31:45 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	const unsigned char	*ptr;
+
+	ptr = (const unsigned char *)s;
+	while (n > 0)
 	{
-		*lst = new;
-		return ;
+		ptr = (const unsigned char *)s;
+		if (*ptr == (unsigned char)c)
+			return ((void *)ptr);
+		s++;
+		n--;
 	}
-	ft_lstlast(*lst)->next = new;
+	return (NULL);
 }
 
 /* #include <stdio.h>
 
 int main()
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
+	char s[20] = "baa baa black sheep";
+	char  c = 'a';
+	void *result = ft_memchr(s, c, 30);
+	if (result != NULL)
+		printf("found byte: %c\n", *(unsigned char *)result);
+	else
+		printf("not found\n");
 } */

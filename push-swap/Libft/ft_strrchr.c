@@ -1,34 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 19:48:01 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/16 15:59:06 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	int	len;
+
+	len = ft_strlen(s);
+	while (*s != '\0')
+		s++;
+	if (c == '\0')
 	{
-		*lst = new;
-		return ;
+		return ((char *) s);
 	}
-	ft_lstlast(*lst)->next = new;
+	else
+	{
+		s -= len;
+		while (len >= 0)
+		{
+			if (s[len] == (char)c)
+				return ((char *)&s[len]);
+			len--;
+		}
+		return (NULL);
+	}
 }
 
 /* #include <stdio.h>
-
+#include <string.h>
 int main()
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
+	char c = 't';
+	const char *s = "tripouille";
+
+	printf("%s\n", ft_strrchr(s, c + 256));
+	printf("%s\n", strrchr(s, c + 256));
 } */

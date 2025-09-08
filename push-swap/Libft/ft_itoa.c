@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 14:09:52 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/24 18:23:31 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/14 11:58:55 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/14 21:31:04 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,52 +27,53 @@ static int	ft_digits(int n)
 	return (count);
 }
 
-static int	ft_pow(int num, int exp)
+static void	ft_intlcpy(int n, char *dst, int size, int sign)
 {
-	int	base;
-
-	base = num;
-	while (exp > 1)
+	if (sign == -1)
+		dst[0] = '-';
+	dst[size] = '\0';
+	size--;
+	while (size >= 0 + sign * sign)
 	{
-		num *= base;
-		exp--;
+		dst[size] = n % 10 + '0';
+		n /= 10;
+		size--;
 	}
-	if (exp == 0)
-		num = 1;
-	return (num);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+char	*ft_itoa(int n)
 {
-	int		digits;
-	int		num;
-	char	temp[1];
-	int		divisor;
+	int		sign;
+	char	*ptr;
+	int		i;
 
+	sign = 0;
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		ptr = malloc(12);
+		ptr[0] = '-';
+		ptr[1] = '2';
+		ft_intlcpy(147483648, ptr + 2, 9, 0);
+		return (ptr);
 	}
 	if (n < 0)
 	{
-		write(fd, "-", 1);
-		n = -n;
+		sign = -1;
+		n *= -1;
 	}
-	digits = ft_digits(n);
-	while (digits > 0)
-	{
-		divisor = ft_pow(10, digits - 1);
-		num = n / divisor;
-		temp[0] = num + '0';
-		write (fd, temp, 1);
-		n %= divisor;
-		digits --;
-	}
+	i = ft_digits(n) + sign * sign;
+	ptr = malloc(i + 1);
+	if (!ptr)
+		return (NULL);
+	ft_intlcpy(n, ptr, i, sign);
+	return (ptr);
 }
 
 /* #include <stdio.h>
+
 int main()
 {
-	ft_putnbr_fd(-2147483648, 1);
+	printf("1: %s\n", ft_itoa(1));
+	printf("-12345: %s\n", ft_itoa(-12345));
+	printf("-2147483648: %s\n", ft_itoa(-2147483648));
 } */

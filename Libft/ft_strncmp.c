@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/08 18:04:53 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/14 21:44:30 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	unsigned char	uc1;
+	unsigned char	uc2;
+
+	while (n > 0)
 	{
-		*lst = new;
-		return ;
+		uc1 = (unsigned char)*s1;
+		uc2 = (unsigned char)*s2;
+		if (uc1 != uc2)
+			return (uc1 - uc2);
+		s1++;
+		s2++;
+		n--;
 	}
-	ft_lstlast(*lst)->next = new;
+	return (0);
 }
 
 /* #include <stdio.h>
-
 int main()
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
+	char s1[9] = "12345678";
+	char s2[11] = "1234567899";
+
+	printf("diff s1,s2: %d\n",ft_strncmp(s1, s2, 20));
 } */

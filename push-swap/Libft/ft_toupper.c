@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 19:18:21 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/14 21:46:37 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_toupper(int c)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	if (c >= 'a' && c <= 'z')
 	{
-		*lst = new;
-		return ;
+		c += 'A' - 'a';
 	}
-	ft_lstlast(*lst)->next = new;
+	return (c);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
-} */

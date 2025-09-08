@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 17:00:08 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/15 17:07:24 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < size - 1 && src[i] != '\0')
 	{
-		*lst = new;
-		return ;
+		dst[i] = src[i];
+		i++;
 	}
-	ft_lstlast(*lst)->next = new;
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
 
 /* #include <stdio.h>
 
 int main()
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
+	char src[] = "coucou";
+	char dest[10]; ft_memset(dest, 'A', 10);
+
+
+	printf("%zu\n", ft_strlcpy(dest, src, 0));
+	printf("%s\n", dest);
 } */

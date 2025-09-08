@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   writes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/08/13 16:18:50 by smariapp          #+#    #+#             */
+/*   Updated: 2025/08/20 19:51:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	write_ps(char ps, char c)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	ft_lstlast(*lst)->next = new;
+	write(1, &ps, 1);
+	write(1, &c, 1);
+	write(1, "\n", 1);
 }
 
-/* #include <stdio.h>
-
-int main()
+void	write_rot(int dir, char c)
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
-} */
+	if (dir == -1)
+	{
+		write(1, "rr", 2);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+	}
+	else
+	{
+		write(1, "r", 1);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+	}
+}

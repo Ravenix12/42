@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 18:05:59 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/14 21:43:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	size_t	i;
+	size_t	dstlen;
+
+	dstlen = ft_strlen(dst);
+	i = 0;
+	if (size <= dstlen)
+		return (size + ft_strlen(src));
+	while (src[i] != '\0' && i < size - dstlen - 1)
 	{
-		*lst = new;
-		return ;
+		dst[dstlen + i] = src[i];
+		i++;
 	}
-	ft_lstlast(*lst)->next = new;
+	dst[dstlen + i] = '\0';
+	return (dstlen + ft_strlen(src));
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
-} */

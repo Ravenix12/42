@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 14:49:40 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/20 16:21:24 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_memcpy(const void *s1, const void *s2, size_t n)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	if (s2 == NULL || n == 0)
+		return ((void *)s1);
+	d = (unsigned char *)s1;
+	s = (const unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		*lst = new;
-		return ;
+		d[i] = s[i];
+		i++;
 	}
-	ft_lstlast(*lst)->next = new;
+	return ((void *)s1);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
-} */

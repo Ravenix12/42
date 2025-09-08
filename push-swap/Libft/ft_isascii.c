@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 16:56:22 by smariapp          #+#    #+#             */
-/*   Updated: 2025/05/17 18:13:34 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/07 12:31:43 by smariapp          #+#    #+#             */
+/*   Updated: 2025/05/20 16:25:47 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_isascii(int c)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	ft_lstlast(*lst)->next = new;
+	c = (unsigned char)c;
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }
 
 /* #include <stdio.h>
-
 int main()
 {
-	t_list * l =  NULL;
-	ft_lstadd_back(&l, ft_lstnew((void*)1));
-	printf("%d\n",(l->next == NULL));
+	printf("ft_isascii('!'): %d\n", ft_isascii('!'));
+	printf("ft_isascii('1'): %d\n", ft_isascii('1'));
+	printf("ft_isascii('~'): %d\n", ft_isascii('~'));
+	printf("ft_isascii('t'): %d\n", ft_isascii('~'));
 } */
