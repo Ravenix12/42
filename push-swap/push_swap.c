@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:34:35 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/21 15:04:37 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:30:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,40 @@ void	multi_input(char *argvi, t_llist **lst)
 {
 	char	**split_res;
 	int		j;
+	int		check;
 
-	if (ft_strncmp(argvi, "", 1) == 0)
-		return ;
 	split_res = ft_split(argvi, ' ');
 	j = 0;
-	while (split_res[j] != NULL)
+	check = 1;
+	while (split_res[j] != NULL && check)
 	{
-		if (!is_valid(split_res[j], lst))
+		check = single_input(split_res[j], lst, 1);
+		j++;
+	}
+	if (split_res[0] == NULL || split_res[0][0] == '\0' || !check)
+	{
 		{
-			write(2, "Error\n", 7);
+			write(2, "Error\n", 6);
 			free_arr(split_res);
 			free_ll(*lst);
 			exit(1);
 		}
-		add_node(lst, ft_atoi(split_res[j]));
-		j++;
 	}
 	free_arr(split_res);
 }
 
-void	single_input(char *argvi, t_llist **lst)
+int	single_input(char *argvi, t_llist **lst, int m)
 {
-	if (ft_strncmp(argvi, "", 1) == 0)
-		return ;
-	if (!is_valid(argvi, lst))
+	if (!is_valid(argvi, lst) && !m)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		free_ll(*lst);
 		exit(1);
 	}
+	if (!is_valid(argvi, lst) && m)
+		return (0);
 	add_node(lst, ft_atoi(argvi));
+	return (1);
 }
 
 void	init_ll(char **argv, t_llist **lst)
@@ -81,12 +84,12 @@ void	init_ll(char **argv, t_llist **lst)
 	int		i;
 
 	i = 1;
-	while (argv[i] != NULL && *argv[i] != '\0')
+	while (argv[i] != NULL)
 	{
 		if (ft_strchr(argv[i], ' ') != NULL)
 			multi_input(argv[i], lst);
 		else
-			single_input(argv[i], lst);
+			single_input(argv[i], lst, 0);
 		i++;
 	}
 }
@@ -96,18 +99,17 @@ int	main(int argc, char **argv)
 	t_llist	*lst;
 
 	lst = NULL;
-	if (argc < 2 || !argv)
-		return ((int)write(2, "Error\n", 7));
+	if (argc == 1)
+		return (0);
 	else
 	{
 		init_ll(argv, &lst);
-		printf("Successfully exited init\n"); //remove
 		if (!is_sorted(lst))
 		{
 			add_index(lst);
 			entry_function(lst);
 		}
-		free_ll(lst);
+		free_ll(ft_llst_ht(lst, 'h'));
 	}
 	return (0);
 }

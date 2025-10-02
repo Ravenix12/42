@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 17:41:52 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/12 19:11:44 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:28:29 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ long	ft_atoi_long(const char *nptr)
 			return ((long)INT_MAX + 2);
 		nptr++;
 	}
+	if (*nptr != '\0')
+		return (0);
 	return (sign * result);
 }
 

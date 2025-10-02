@@ -6,7 +6,7 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 16:51:32 by smariapp          #+#    #+#              #
-#    Updated: 2025/05/20 16:31:57 by smariapp         ###   ########.fr        #
+#    Updated: 2025/09/18 21:11:02 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = libft.a
 CC = cc
 AR = ar rcs
 CFLAGS = -Wall -Wextra -Werror
+
+HEADER = libft.h
 
 SOURCES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 		ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
@@ -37,6 +39,8 @@ bonus: $(OBJECTS) $(BOBJECTS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJECTS): $(HEADER)
 
 clean:
 	rm -f $(OBJECTS) $(BOBJECTS)

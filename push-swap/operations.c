@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:34:21 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/21 15:06:34 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:29:16 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	swap(t_llist *lst, int both, char c)
 		write_ps('s', c);
 }
 
-void	swap_both(t_llist *stack_a, t_llist *stack_b)
+/* void	swap_both(t_llist *stack_a, t_llist *stack_b)
 {
 	swap(stack_a, 1, 0);
 	swap(stack_b, 1, 0);
 	write_ps('s', 's');
-}
+} */
 
 t_llist	*extract_node_to_push(t_llist **stack)
 {
@@ -139,9 +139,9 @@ void	rotate(t_llist **stack, int dir, char c, int both)
 		write_rot(dir, c);
 }
 
-void	rotate_both(t_llist **stack_a, t_llist **stack_b, int dir)
+/* void	rotate_both(t_llist **stack_a, t_llist **stack_b, int dir)
 {
 	rotate(stack_a, dir, 'a', 1);
 	rotate(stack_b, dir, 'a', 1);
 	write_rot(dir, 'r');
-}
+} */

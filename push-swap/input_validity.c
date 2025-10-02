@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 19:13:25 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/21 17:20:28 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:31:32 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	zero_check(char *num)
 		return (1);
 	else if (ft_strncmp("+0", num, 3) == 0 || ft_strncmp("-0", num, 3) == 0)
 		return (1);
+	else if (ft_strncmp("+", num, 2) == 0 || ft_strncmp("-", num, 2) == 0)
+		return (0);
 	else if (*num == '+' || *num == '-' || *num == '0')
 	{
 		num++;
@@ -49,6 +51,8 @@ int	contains_digit_only(char *num)
 	int	i;
 
 	i = 0;
+	if (num == NULL || num[0] == '\0')
+		return (0);
 	while (num[i] != '\0')
 	{
 		if (!ft_isdigit(num[i]) && !ft_isspace_or_sign(num[i]))
@@ -74,6 +78,8 @@ int	valid_int(char *num, t_llist **lst)
 
 int	is_valid(char *num, t_llist **lst)
 {
+	if (num == NULL)
+		return (0);
 	if (contains_digit_only(num) && valid_int(num, lst))
 		return (1);
 	return (0);

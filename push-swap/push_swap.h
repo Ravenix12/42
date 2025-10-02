@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 11:23:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/21 19:53:00 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/09/18 21:11:19 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,21 @@ typedef struct s_llist
 }	t_llist;
 //operations.c
 void	swap(t_llist *lst, int both, char c);
-void	swap_both(t_llist *stack_a, t_llist *stack_b);
+//void	swap_both(t_llist *stack_a, t_llist *stack_b);
 t_llist	*extract_node_to_push(t_llist **stack_2);
-void	push(t_llist **stack_1, t_llist **stack_2, char c);
+void	push(t_llist **p_to, t_llist **p_from, char c);
 void	rotate_no_space(t_llist **stack, int dir);
 void	rotate(t_llist **stack, int dir, char c, int both);
 //push-swap.c
 int		is_sorted(t_llist *lst);
 void	init_ll(char **argv, t_llist **lst);
 void	multi_input(char *argvi, t_llist **lst);
-void	single_input(char *argvi, t_llist **lst);
+int		single_input(char *argvi, t_llist **lst, int m);
 //linkedlist.c
 t_llist	*ft_llst_ht(t_llist *lst, char ht);
 int		count_nodes(t_llist *lst);
 void	add_node(t_llist **lst, int data);
 void	free_ll(t_llist *lst);
-
-
-void	print_ll(t_llist *lst);
-
-
-
 //kina_like_libft.c
 int		ft_isspace_or_sign(char c);
 long	ft_atoi_long(const char *nptr);
@@ -61,18 +55,16 @@ int		zero_check(char *num);
 //writes
 void	write_ps(char ps, char c);
 void	write_rot(int dir, char c);
-
-
 //indexing
 void	sort_arr(int *arr, int len);
 void	indexing(t_llist *lst, int *arr, int nodes);
 void	add_index(t_llist *lst);
-
 //algo
 void	entry_function(t_llist *stack_a);
 void	sort_3(t_llist **stack_a, int nodes);
-void	helper(t_llist **lsta, t_llist **lstb);
 void	sort_4( t_llist **lsta, t_llist **lstb);
 void	sort_5( t_llist **lsta, t_llist **lstb);
-
+//radix
+int		power_2(int i);
+void	radix_sort(t_llist **lsta, t_llist **lstb, int nodes);
 #endif

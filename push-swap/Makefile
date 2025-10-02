@@ -6,7 +6,7 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/06 16:34:39 by smariapp          #+#    #+#              #
-#    Updated: 2025/08/14 16:41:54 by smariapp         ###   ########.fr        #
+#    Updated: 2025/09/18 21:12:10 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,10 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFT_DIR = ./Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
+HEADER = push_swap.h Libft/libft.h
+
 SOURCES = push_swap.c operations.c linkedlist.c kinda_like_libft.c input_validity.c \
-		writes.c indexing.c algo.c 
+		writes.c indexing.c algo.c radix.c
 		
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -32,6 +34,8 @@ $(LIBFT):
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+	
+$(OBJECTS): $(HEADER)
 
 clean:
 	rm -f $(OBJECTS)
