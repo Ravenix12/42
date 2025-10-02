@@ -9,7 +9,8 @@ Completed with bonus
 Completed
 - Printf
 - Pipex
+- Push-swap
 ###
 In Progress
-- Push-swap
+- Minishell
 
