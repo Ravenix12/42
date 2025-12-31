@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:47 by smariapp          #+#    #+#             */
-/*   Updated: 2025/06/07 16:23:52 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/12/31 17:44:02 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*get_next_line(int fd);
 
 // Utility Functions
 void	ft_strcopy(char *src, char *dst, int count);
-int		ft_strlen(const char *s);
 int		ft_strchrm(const char *s, char c);
 char	*ft_allocate_rem(char *rem);
 #endif

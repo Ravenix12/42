@@ -6,7 +6,7 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 12:13:57 by smariapp          #+#    #+#              #
-#    Updated: 2025/12/30 22:21:11 by smariapp         ###   ########.fr        #
+#    Updated: 2025/12/31 17:45:32 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(BNAME): $(BOBJECTS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 	
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) $(BOBJECTS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
@@ -54,6 +54,6 @@ re: fclean all
 
 it: all clean
 
-.PHONY: all bonus clean fclean re it
+bbb: bonus clean
 
-
+.PHONY: all bonus clean fclean re it bbb

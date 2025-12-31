@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 16:58:54 by smariapp          #+#    #+#             */
-/*   Updated: 2025/12/30 20:27:12 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/12/31 19:48:06 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "Libft/libft.h"
-#include "gnl/get_next_line.h"
+# include "gnl/get_next_line.h"
 
 // Utility functions
 char	**get_paths(void);
@@ -34,5 +34,8 @@ void	process1(int pipefds[2], char *argv, char **envp, int fd1);
 void	process2(int pipefds[2], char *argv, char **envp, int fd2);
 int		dwpipes(int fd1, int fd2, char **argv, char **envp);
 int		main(int argc, char **argv, char **envp);
+
+//bonus_utils
+int		open_file(char **argv, int io);
 
 #endif
