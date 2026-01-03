@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 13:52:55 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/02 16:09:54 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/10/02 17:41:39 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*path_constructor(char *arr)
 	int		i;
 
 	i = 0;
-	if (ft_strchr(arr, '/') != NULL && access (arr, F_OK) == 0)
+	if (ft_strchr(arr, '/') != NULL && access(arr, F_OK) == 0)
 		return (ft_strdup(arr));
 	else if (ft_strchr(arr, '/') != NULL)
 		return (NULL);

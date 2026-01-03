@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:17:42 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/02 16:54:25 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/12/30 21:53:12 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	main(int argc, char **argv, char **envp)
 	int	fd2;
 	int	ret;
 
-	if (argc >= 5)
+	if (argc == 5)
 	{
 		fd2 = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (fd2 < 0)
