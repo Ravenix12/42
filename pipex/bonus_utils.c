@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 14:29:29 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/03 18:15:30 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:41:07 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	open_file(char **argv, int io)
+int ft_arrlen(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	open_file(char **argv, int io, int argc)
 {
 	int	fd;
 
@@ -30,9 +42,9 @@ void	process1_5(int read, int write, char *argv, char **envp)
 	char	**args;
 	char	*path;
 
-	dup2(write[0], STDIN_FILENO);
-	dup2(read[1], STDOUT_FILENO);
-	close(read[1]);
+	dup2(read, STDIN_FILENO);
+	dup2(write, STDOUT_FILENO);
+	close(read);
 	if (argv && *argv)
 	{
 		args = ft_split(argv, ' ');
@@ -47,23 +59,55 @@ void	process1_5(int read, int write, char *argv, char **envp)
 		exit (1);
 	}
 	else
-		write_for_me(STDOUT_FILENO, write[0]);
-	close(write[0]);
+		write_for_me(STDOUT_FILENO, write);
+	close(write);
 	exit (1);
 }
 
 //This should replace process 1 for heredoc
-void	heredoc_proc(char **argv, char **envp, int fd2, int read[2])
+void	heredoc_proc(char **argv, int read[2])
 {
 	char	*line;
 	
+	if (!argv)
+		return;
 	close(read[0]);
 	line = get_next_line(0);
-	while (ft_strncmp(line, argv[2], (ft_strlen(argv[2]) + 1)) != 0)
-	{
-		write(read[1], line, ft_strlen(line));
-		line = get_next_line(0);
-	}
-	close(read[0]);
+	write(2, line, ft_strlen(line));
+	// while (ft_strncmp(line, argv[2], ft_strlen(argv[2])) != 0)
+	// {
+	// 	write(read[1], line, ft_strlen(line));
+	// 	free(line);
+	// 	line = get_next_line(0);
+	// }
+	free(line);
+	close(read[1]);
+	exit(0);
+}
+
+void heredoc_proc_chat(char **argv, int p[2])
+{
+    char *line;
+
+    close(p[0]);
+    while (1)
+    {
+        line = get_next_line(0);
+		if (!line)
+            break;
+        if (ft_strncmp(line, argv[2], 1) == 0)
+        //if (ft_strncmp(line, argv[2], (ft_strlen(argv[2]) - 1)) == 0)
+            //&& line[ft_strlen(argv[2])] == '\n')
+        {
+            free(line);
+            break;
+        }
+
+        write(p[1], line, ft_strlen(line));
+        free(line);
+    }
+
+    close(p[1]);
+    exit(0);
 }
 

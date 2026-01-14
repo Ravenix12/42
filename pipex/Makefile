@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
+#    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 12:13:57 by smariapp          #+#    #+#              #
-#    Updated: 2025/12/31 17:45:32 by smariapp         ###   ########.fr        #
+#    Updated: 2026/01/14 15:02:48 by shivani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ HEADER  = main.h
 LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SOURCES = main.c utilities.c
+SOURCES = main.c utilities.c mandatory.c
 
-BSOURCES = bonus.c gnl/get_next_line.c gnl/get_next_line_utils.c
+BSOURCES = bonus.c gnl/get_next_line.c gnl/get_next_line_utils.c bonus_utils.c mandatory.c utilities.c
 
 OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)
@@ -47,7 +47,7 @@ clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) $(OBJECTS)
+	rm -f $(NAME) $(BNAME) $(OBJECTS) $(BOBJECTS)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
