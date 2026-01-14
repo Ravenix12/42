@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
+#    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 12:13:57 by smariapp          #+#    #+#              #
-#    Updated: 2026/01/14 15:02:48 by shivani          ###   ########.fr        #
+#    Updated: 2026/01/14 21:10:36 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 BNAME = pipex_bonus
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 HEADER  = main.h
 
 LIBFT_DIR = Libft

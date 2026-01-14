@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 16:58:54 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/14 14:50:34 by shivani          ###   ########.fr       */
+/*   Updated: 2026/01/14 20:24:17 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int		main(int argc, char **argv, char **envp);
 //bonus_utils
 int		open_file(char **argv, int io, int argc);
 void	process1_5(int read, int write, char *argv, char **envp);
-int 	ft_arrlen(char **arr);
+int		ft_arrlen(char **arr);
 void	heredoc_proc(char **argv, int read[2]);
 #endif

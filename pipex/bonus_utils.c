@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 14:29:29 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/14 19:41:07 by shivani          ###   ########.fr       */
+/*   Updated: 2026/01/14 21:48:59 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int ft_arrlen(char **arr)
+int	ft_arrlen(char **arr)
 {
 	int	i;
 
@@ -34,6 +34,8 @@ int	open_file(char **argv, int io, int argc)
 		fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else if (io == 1)
 		fd = open(argv[1], O_RDONLY);
+	else
+		fd = -1;
 	return (fd);
 }
 
@@ -68,46 +70,18 @@ void	process1_5(int read, int write, char *argv, char **envp)
 void	heredoc_proc(char **argv, int read[2])
 {
 	char	*line;
-	
+
 	if (!argv)
-		return;
+		return ;
 	close(read[0]);
 	line = get_next_line(0);
-	write(2, line, ft_strlen(line));
-	// while (ft_strncmp(line, argv[2], ft_strlen(argv[2])) != 0)
-	// {
-	// 	write(read[1], line, ft_strlen(line));
-	// 	free(line);
-	// 	line = get_next_line(0);
-	// }
+	while (ft_strncmp(line, argv[2], (ft_strlen(argv[2]) - 1)) != 0)
+	{
+		write(read[1], line, ft_strlen(line));
+		free(line);
+		line = get_next_line(0);
+	}
 	free(line);
 	close(read[1]);
 	exit(0);
 }
-
-void heredoc_proc_chat(char **argv, int p[2])
-{
-    char *line;
-
-    close(p[0]);
-    while (1)
-    {
-        line = get_next_line(0);
-		if (!line)
-            break;
-        if (ft_strncmp(line, argv[2], 1) == 0)
-        //if (ft_strncmp(line, argv[2], (ft_strlen(argv[2]) - 1)) == 0)
-            //&& line[ft_strlen(argv[2])] == '\n')
-        {
-            free(line);
-            break;
-        }
-
-        write(p[1], line, ft_strlen(line));
-        free(line);
-    }
-
-    close(p[1]);
-    exit(0);
-}
-
