@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:47 by smariapp          #+#    #+#             */
-/*   Updated: 2025/06/07 16:23:52 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:45:29 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 // GNL Functions
 char	*ft_alloc(char *line, char *buf, int ix);
-char	*ft_body(int fd, char **rem, char buf[BUFFER_SIZE + 1], char *line);
-char	*get_next_line(int fd);
+char	*ft_body(int fd, char **rem, char *buf, char *line);
+char	*get_next_line(int fd, int flag);
 
 // Utility Functions
 void	ft_strcopy(char *src, char *dst, int count);
-int		ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 int		ft_strchrm(const char *s, char c);
 char	*ft_allocate_rem(char *rem);
 #endif

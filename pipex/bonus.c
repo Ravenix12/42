@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 14:13:55 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/14 22:05:43 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:21:33 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	pipes_inbtw(int read, char **argv, char **envp, int start)
 	int	prev_fd;
 
 	prev_fd = read;
-	len = ft_arrlen(argv) - 1;
+	len = ft_arrlen(argv) - 2;
 	while (start++ < len)
 	{
 		if (pipe(p) == -1)
@@ -32,8 +32,7 @@ int	pipes_inbtw(int read, char **argv, char **envp, int start)
 			close(p[0]);
 			process1_5(prev_fd, p[1], argv[start - 1], envp);
 		}
-		if (prev_fd != read)
-			close(prev_fd);
+		close(prev_fd);
 		close(p[1]);
 		prev_fd = p[0];
 		waitpid(cpid, &status, 0);
@@ -93,9 +92,9 @@ int	dwpipes_hd(int fd2, char **argv, char **envp)
 	return (close(p[0]), close(p[1]), 1);
 }
 
-int handle_fd1(int argc, char **argv)
+int	handle_fd1(int argc, char **argv)
 {
-	int fd1;
+	int	fd1;
 
 	fd1 = open_file(argv, 1, argc);
 	if (fd1 < 0)
@@ -120,7 +119,7 @@ int	main(int argc, char **argv, char **envp)
 		if (ft_strncmp(argv[1], "here_doc", 9) == 0 && argc >= 6)
 		{
 			ret = dwpipes_hd(fd2, argv, envp);
-			return (close(fd2), ret);		
+			return (close(fd2), ret);
 		}
 		else if (ft_strncmp(argv[1], "here_doc", 9) == 0 && argc == 5)
 			return (no_space_for_exit("insuffient arguments", 1), 0);

@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:58 by smariapp          #+#    #+#             */
-/*   Updated: 2025/06/07 16:40:17 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/22 18:37:55 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_strcopy(char *src, char *dst, int count)
 	dst[i] = '\0';
 }
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	len;
 

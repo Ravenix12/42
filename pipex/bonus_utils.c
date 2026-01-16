@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 14:29:29 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/14 21:48:59 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:15:10 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,18 @@ void	process1_5(int read, int write, char *argv, char **envp)
 void	heredoc_proc(char **argv, int read[2])
 {
 	char	*line;
+	int		len;
 
-	if (!argv)
-		return ;
 	close(read[0]);
-	line = get_next_line(0);
-	while (ft_strncmp(line, argv[2], (ft_strlen(argv[2]) - 1)) != 0)
+	len = ft_strlen(argv[2]);
+	while (1)
 	{
+		write(2, "> ", 2);
+		line = get_next_line(0, 0);
+		if (ft_strncmp(line, argv[2], len) == 0 && line[len] == '\n')
+			break ;
 		write(read[1], line, ft_strlen(line));
 		free(line);
-		line = get_next_line(0);
 	}
 	free(line);
 	close(read[1]);

@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:52 by smariapp          #+#    #+#             */
-/*   Updated: 2025/06/07 16:24:01 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/08/29 15:47:39 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_alloc(char *line, char *buf, int ix)
 {
 	char	*new_line;
-	int		len;
+	size_t	len;
 
 	len = ft_strlen(line);
 	new_line = malloc(len + ix + 1);
@@ -57,7 +57,7 @@ char	*ft_body(int fd, char **rem, char *buf, char *line)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	char		*str;
 	static char	*rem;
@@ -65,7 +65,9 @@ char	*get_next_line(int fd)
 	char		*buf;
 	int			ix;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (flag && rem)
+		return (free(rem), NULL);
+	if (flag || fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
@@ -77,10 +79,8 @@ char	*get_next_line(int fd)
 		new_rem = ft_allocate_rem(&rem[ix + 1]);
 		free(rem);
 		rem = new_rem;
-		free(buf);
-		return (str);
+		return (free(buf), str);
 	}
 	str = ft_body(fd, &rem, buf, ft_allocate_rem(rem));
-	free(buf);
-	return (str);
+	return (free(buf), str);
 }

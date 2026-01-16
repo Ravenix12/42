@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:47 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/14 14:47:50 by shivani          ###   ########.fr       */
+/*   Updated: 2025/08/29 15:45:29 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../Libft/libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -24,10 +23,11 @@
 // GNL Functions
 char	*ft_alloc(char *line, char *buf, int ix);
 char	*ft_body(int fd, char **rem, char *buf, char *line);
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int flag);
 
 // Utility Functions
 void	ft_strcopy(char *src, char *dst, int count);
+size_t	ft_strlen(const char *s);
 int		ft_strchrm(const char *s, char c);
 char	*ft_allocate_rem(char *rem);
 #endif
