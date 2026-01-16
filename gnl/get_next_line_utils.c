@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:29:58 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/22 18:37:55 by smariapp         ###   ########.fr       */
+/*   Updated: 2025/12/31 17:44:09 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,6 @@ void	ft_strcopy(char *src, char *dst, int count)
 		i++;
 	}
 	dst[i] = '\0';
-}
-
-size_t	ft_strlen(const char *s)
-{
-	int	len;
-
-	if (s == NULL)
-		return (0);
-	len = 0;
-	while (s[len] != '\0')
-		len++ ;
-	return (len);
 }
 
 int	ft_strchrm(const char *s, char c)

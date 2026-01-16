@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 14:35:00 by smariapp          #+#    #+#             */
-/*   Updated: 2025/08/29 15:46:00 by smariapp         ###   ########.fr       */
+/*   Created: 2025/05/28 16:29:52 by smariapp          #+#    #+#             */
+/*   Updated: 2025/06/07 16:24:01 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-char	*ft_allocate_rem(char *rem)
-{
-	size_t	length;
-	size_t	i;
-	char	*ptr;
-
-	if (rem == NULL || *rem == '\0')
-		return (NULL);
-	length = ft_strlen(rem);
-	ptr = malloc(length + 1);
-	i = 0;
-	while (i < length)
-	{
-		ptr[i] = rem[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
+#include "get_next_line.h"
 
 char	*ft_alloc(char *line, char *buf, int ix)
 {
 	char	*new_line;
-	size_t	len;
+	int		len;
 
 	len = ft_strlen(line);
 	new_line = malloc(len + ix + 1);
@@ -77,42 +57,30 @@ char	*ft_body(int fd, char **rem, char *buf, char *line)
 	return (line);
 }
 
-char	*ft_line(t_fdnode *n, int fd, t_fdnode **fd_lst, char *buf)
-{
-	char	*line;
-	char	*new_rem;
-	int		ix;
-
-	ix = ft_strchrm(n->rem, '\n');
-	if (ix >= 0)
-	{
-		line = ft_alloc(NULL, n->rem, ix + 1);
-		new_rem = ft_allocate_rem(&n->rem[ix + 1]);
-		free(n->rem);
-		n->rem = new_rem;
-		free(buf);
-		return (line);
-	}
-	line = ft_body(fd, &n->rem, buf, ft_allocate_rem(n->rem));
-	if (!line)
-		free_fdnode(fd, fd_lst);
-	free(buf);
-	return (line);
-}
-
 char	*get_next_line(int fd)
 {
-	static t_fdnode	*fd_list;
-	t_fdnode		*node;
-	char			*buf;
+	char		*str;
+	static char	*rem;
+	char		*new_rem;
+	char		*buf;
+	int			ix;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	node = get_fdnode(fd, &fd_list);
-	if (!node)
 		return (NULL);
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
 		return (NULL);
-	return (ft_line(node, fd, &fd_list, buf));
+	ix = ft_strchrm(rem, '\n');
+	if (ix >= 0)
+	{
+		str = ft_alloc(NULL, rem, ix + 1);
+		new_rem = ft_allocate_rem(&rem[ix + 1]);
+		free(rem);
+		rem = new_rem;
+		free(buf);
+		return (str);
+	}
+	str = ft_body(fd, &rem, buf, ft_allocate_rem(rem));
+	free(buf);
+	return (str);
 }

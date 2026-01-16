@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 16:58:54 by smariapp          #+#    #+#             */
-/*   Updated: 2026/01/16 10:16:20 by shivani          ###   ########.fr       */
+/*   Updated: 2026/01/03 18:15:20 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		dwpipes(int fd1, int fd2, char **argv, char **envp);
 int		main(int argc, char **argv, char **envp);
 
 //bonus_utils
-int		open_file(char **argv, int io, int argc);
+int		open_file(char **argv, int io);
 void	process1_5(int read, int write, char *argv, char **envp);
-int		ft_arrlen(char **arr);
-void	heredoc_proc(char **argv, int read[2]);
+//This should replace process 1 for heredoc
+void	heredoc_proc(char **argv, char **envp, int fd2, int read[2]);
 #endif

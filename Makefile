@@ -3,25 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
+#    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 12:13:57 by smariapp          #+#    #+#              #
-#    Updated: 2026/01/16 16:03:24 by shivani          ###   ########.fr        #
+#    Updated: 2025/12/31 17:45:32 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 BNAME = pipex_bonus
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 HEADER  = main.h
 
 LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SOURCES = main.c utilities.c mandatory.c
+SOURCES = main.c utilities.c
 
-BSOURCES = bonus.c gnl/get_next_line.c gnl/get_next_line_utils.c bonus_utils.c mandatory.c utilities.c
+BSOURCES = bonus.c gnl/get_next_line.c gnl/get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)
@@ -47,7 +47,7 @@ clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) $(BNAME) $(OBJECTS) $(BOBJECTS)
+	rm -f $(NAME) $(OBJECTS)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
