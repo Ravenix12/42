@@ -4,11 +4,11 @@
 Completed with bonus
 - Libft
 - Get Next line
+- Pipex
 - so-long
 ###
 Completed
 - Printf
-- Pipex
 - Push-swap
 ###
 In Progress
