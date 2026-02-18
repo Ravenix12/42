@@ -13,4 +13,5 @@ Completed
 ###
 In Progress
 - Minishell
+- Philo
 
