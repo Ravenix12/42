@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/24 16:09:53 by shivani          ###   ########.fr       */
+/*   Updated: 2026/02/24 21:39:32 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,32 @@ t_params	*init_params(char **argv)
 		params->eatnum = -1;
 }
 
+int	assign(t_philo *philo, int i, t_params *params, long long time)
+{
+	int code;
+
+	code = pthread_create(philo->thread, NULL, start, philo);
+	philo->id = i;
+	philo->dead = 0;
+	philo->params = params;
+	philo->start = time;
+	philo->last = time;
+	return (code);
+}
+
 t_philo	*init_philo(int n, t_params *params)
 {
-	t_philo		*philo;
-	t_philo		*prev;
-	t_philo		*head;
-	int			i;
-	int			code;
+	t_philo			*philo;
+	t_philo			*prev;
+	t_philo			*head;
+	int				i;
 
 	philo = malloc(sizeof(t_philo));
 	head = philo;
 	while (i < n)
 	{
-		code = pthread_create(philo->thread, NULL, start, philo);
-		philo->id = i;
-		philo->dead = 0;
-		philo->params = params;
+		if (assign(philo, i, params, get_time_in_ms()) != 0)
+			exit_condition(head);
 		prev = philo;
 		if (i < n - 1)
 		{

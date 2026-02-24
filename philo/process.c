@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:41:51 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/24 16:10:26 by shivani          ###   ########.fr       */
+/*   Updated: 2026/02/24 22:10:30 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ int	dead(t_philo *philosophers)
 	return (0);
 }
 
+void	eat(t_philo* philo)
+{
+	int	*forks;
+	int l;
+	int	r;
+
+	forks = philo->params->forks;
+	l = philo->id;
+	r = philo->next->id;	
+	pthread_mutex_lock(forks[l]);
+	pthread_mutex_lock(forks[r]);
+	philo->last = get_time_in_ms();
+	
+}
+
 void	*start(void *job)
 {
 	t_philo	*philos;
@@ -39,7 +54,7 @@ void	*start(void *job)
 			continue;
 		if (dead(philos))
 			break ;
-		else
+		else // add sleep for even 
 			routine();
 	}
 }

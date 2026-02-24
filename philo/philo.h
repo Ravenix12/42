@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 15:16:40 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/24 16:00:43 by shivani          ###   ########.fr       */
+/*   Updated: 2026/02/24 21:39:09 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <sys/time.h>
 
 typedef struct s_params
 {
@@ -35,6 +36,8 @@ typedef struct s_philo
 	int			id;
 	pthread_t	thread;
 	t_philo		*next;
+	long long	start;
+	long long	last;
 	int			dead;
 	t_params	*params;
 }	t_philo;
