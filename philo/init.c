@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/18 20:45:36 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/02/24 16:09:53 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ long	ft_atoi(const char *nptr)
 	return (sign * result);
 }
 
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
+
+	if (size != 0 && nmemb > SIZE_MAX / size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}
+
+//forks: setting to 0-> 0 means available
 t_params	*init_params(char **argv)
 {
 	t_params	*params;
@@ -46,13 +60,15 @@ t_params	*init_params(char **argv)
 	params->die = ft_atoi(argv[2]);
 	params->eat = ft_atoi(argv[3]);
 	params->sleep = ft_atoi(argv[4]);
+	params->forks = (int *)ft_calloc(params->philo, sizeof(*params->forks));
+	params->ready = 0;
 	if (argv[5])
 		params->eatnum = ft_atoi(argv[5]);
 	else
 		params->eatnum = -1;
 }
 
-t_philo	*init_philo(int n)
+t_philo	*init_philo(int n, t_params *params)
 {
 	t_philo		*philo;
 	t_philo		*prev;
@@ -64,7 +80,10 @@ t_philo	*init_philo(int n)
 	head = philo;
 	while (i < n)
 	{
-		code =  pthread_create(philo->thread, NULL, start, NULL);
+		code = pthread_create(philo->thread, NULL, start, philo);
+		philo->id = i;
+		philo->dead = 0;
+		philo->params = params;
 		prev = philo;
 		if (i < n - 1)
 		{
@@ -72,8 +91,8 @@ t_philo	*init_philo(int n)
 			prev->next = philo;
 		}
 		else
-			prev->next = NULL;
-		i++;		
+			prev->next = head;
+		i++;
 	}
-	return (head);
+	return (params->ready = 1, head);
 }
