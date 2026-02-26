@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:16:23 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/24 21:50:36 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/02/26 14:44:48 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	exit_condition(t_philo *philo)
 	free(head);
 }
 
-void	log(long long time, char *message)
+void	w_log(long long time, int id, char *message)
 {
 	ft_putnbr_fd((int)time, 1);
+	write(1, " ", 1);
+	ft_putnbr_fd(id, 1);
 	write(1, " ", 1);
 	write(1, message, ft_strlen(message));
 }

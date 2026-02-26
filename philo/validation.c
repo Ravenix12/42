@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:20:32 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/18 18:02:30 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/02/26 14:38:56 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+
 
 int	ft_isdigit(char c)
 {

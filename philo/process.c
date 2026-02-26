@@ -3,29 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:41:51 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/24 22:10:30 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/02/26 16:42:14 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	dead(t_philo *philosophers)
+void	sleep_think(t_philo* philo)
 {
-	int	n;
-	int	i;
-
-	n = philosophers->params->philo;
-	while (i < n)
-	{
-		if (philosophers->dead)
-			return (1);
-		philosophers = philosophers->next;
-		i++;
-	}
-	return (0);
+	w_log((get_time_in_ms() - philo->start), philo->id, S);
+	usleep(philo->params->sleep);
+	w_log((get_time_in_ms() - philo->start), philo->id, T);
 }
 
 void	eat(t_philo* philo)
@@ -36,25 +27,31 @@ void	eat(t_philo* philo)
 
 	forks = philo->params->forks;
 	l = philo->id;
-	r = philo->next->id;	
-	pthread_mutex_lock(forks[l]);
-	pthread_mutex_lock(forks[r]);
+	r = philo->next->id;
+	pthread_mutex_lock(&forks[l]);
+	w_log((get_time_in_ms() - philo->start), philo->id, F);
+	pthread_mutex_lock(&forks[r]);
+	w_log((get_time_in_ms() - philo->start), philo->id, F);
 	philo->last = get_time_in_ms();
-	
+	usleep(philo->params->eat);
+	pthread_mutex_unlock(&forks[l]);
+	pthread_mutex_unlock(&forks[r]);
+	philo->meals += 1;
+	sleep_think(philo);
 }
 
 void	*start(void *job)
 {
-	t_philo	*philos;
+	t_philo	*philo;
 
-	philos = (t_philo *)job;
+	philo = (t_philo *)job;
 	while (1)
 	{
-		if (!philos->params->ready)
+		if (!philo->params->ready)
 			continue;
-		if (dead(philos))
+		if (philo->params->dead)
 			break ;
-		else // add sleep for even 
-			routine();
+		else // add sleep for even
+			eat(philo);
 	}
 }

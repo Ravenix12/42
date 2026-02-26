@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
+#    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 19:59:56 by smariapp          #+#    #+#              #
-#    Updated: 2026/02/10 16:56:31 by smariapp         ###   ########.fr        #
+#    Updated: 2026/02/25 10:19:08 by shivani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 LIBFLAGS = -lpthread
 HEADER  = main.h
 
-SOURCES = main.c validation.c init.c
+SOURCES = main.c validation.c init.c process.c utilities.c ft_putnbr_fd.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all = $(NAME)
