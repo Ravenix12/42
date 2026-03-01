@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/02/26 14:48:51 by shivani          ###   ########.fr       */
+/*   Updated: 2026/03/01 21:23:38 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,39 @@ void	*ft_calloc(size_t nmemb, size_t size)
 //forks: setting to 0-> 0 means available
 t_params	*init_params(char **argv)
 {
-	t_params	*params;
+	t_params	*par;
+	int			i;
 
-	params = malloc(sizeof(t_params));
-	params->philo = ft_atoi(argv[1]);
-	params->die = ft_atoi(argv[2]);
-	params->eat = ft_atoi(argv[3]);
-	params->sleep = ft_atoi(argv[4]);
-	params->forks = (pthread_mutex_t *)ft_calloc(params->philo, sizeof(*params->forks));
-	params->ready = 0;
-	params->dead = 0;
+	i = 0;
+	par = malloc(sizeof(t_params));
+	par->philo = ft_atoi(argv[1]);
+	par->die = ft_atoi(argv[2]);
+	par->eat = ft_atoi(argv[3]);
+	par->sleep = ft_atoi(argv[4]);
+	par->forks = (pthread_mutex_t *)malloc(par->philo * sizeof(*par->forks));
+	while (i < par->philo)
+		pthread_mutex_init(&par->forks[i++], NULL);
+	par->ready = 0;
+	par->dead = 0;
+	par->full = 0;
+	pthread_mutex_init(&par->log, NULL);
 	if (argv[5])
-		params->eatnum = ft_atoi(argv[5]);
+		par->eatnum = ft_atoi(argv[5]);
 	else
-		params->eatnum = -1;
-	return (params);
+		par->eatnum = -1;
+	return (par);
 }
 
-int	assign(t_philo *philo, int i, t_params *params, long long time)
+int	assign(t_philo *philo, int i, t_params *params)
 {
-	int code;
+	int	code;
 
-	code = pthread_create(&philo->thread, NULL, start, philo);
 	philo->id = i;
 	philo->params = params;
-	philo->start = time;
-	philo->last = time;
 	philo->meals = 0;
+	philo->last = get_time_in_ms();
+	pthread_mutex_init(&philo->meal_last, NULL);
+	code = pthread_create(&philo->thread, NULL, start, philo);
 	return (code);
 }
 
@@ -90,9 +96,10 @@ t_philo	*init_philo(int n, t_params *params)
 
 	philo = malloc(sizeof(t_philo));
 	head = philo;
+	i = 0;
 	while (i < n)
 	{
-		if (assign(philo, i, params, get_time_in_ms()) != 0)
+		if (assign(philo, i, params) != 0)
 			exit_condition(head);
 		prev = philo;
 		if (i < n - 1)
@@ -105,5 +112,5 @@ t_philo	*init_philo(int n, t_params *params)
 		i++;
 	}
 	pthread_create(&params->monitor, NULL, monitor, head);
-	return (params->ready = 1, head);
+	return (params->start = get_time_in_ms(), params->ready = 1, head);
 }
