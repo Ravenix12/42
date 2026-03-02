@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 16:17:02 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:38:19 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:53:34 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	dead_or_alive(t_philo *philos)
 			pthread_mutex_lock(&philos->params->r_d_m);
 			params->dead = 1;
 			pthread_mutex_unlock(&philos->params->r_d_m);
-			w_log(get_time_in_ms() - params->start, philos->id, D, params);
+			w_log(get_time_in_ms(), philos->id, D, params);
 			return (-1);
 		}
 		philos = philos->next;
@@ -72,10 +72,10 @@ void	*monitor(void *job)
 	int		i;
 
 	head = (t_philo *)job;
-	//pthread_mutex_lock(&head->params->r_d_m);
+	pthread_mutex_lock(&head->params->r_d_m);
 	while (!head->params->ready)
 		usleep(100);
-	//pthread_mutex_lock(&head->params->r_d_m);
+	pthread_mutex_unlock(&head->params->r_d_m);
 	while (1)
 	{
 		philos = head;

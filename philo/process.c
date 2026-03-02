@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:41:51 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:37:38 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:56:19 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	sleep_think(t_philo *philo)
 	t_params	*params;
 
 	params = philo->params;
-	w_log((get_time_in_ms() - params->start), philo->id, S, philo->params);
+	w_log(get_time_in_ms(), philo->id, S, philo->params);
 	ft_usleep(philo->params->sleep, philo->params);
-	w_log((get_time_in_ms() - params->start), philo->id, T, philo->params);
+	w_log(get_time_in_ms(), philo->id, T, philo->params);
 	usleep(500);
 }
 
@@ -36,16 +36,16 @@ void	get_forks(t_philo *philo, pthread_mutex_t *forks)
 	if (l > r)
 	{
 		pthread_mutex_lock(&forks[r]);
-		w_log((get_time_in_ms() - philo->params->start), l, F, philo->params);
+		w_log(get_time_in_ms(), l, F, philo->params);
 		pthread_mutex_lock(&forks[l]);
 	}
 	else
 	{
 		pthread_mutex_lock(&forks[l]);
-		w_log((get_time_in_ms() - params->start), l, F, params);
+		w_log(get_time_in_ms(), l, F, params);
 		pthread_mutex_lock(&forks[r]);
 	}
-	w_log((get_time_in_ms() - params->start), l, F, params);
+	w_log(get_time_in_ms(), l, F, params);
 	pthread_mutex_lock(&philo->tlast);
 	philo->last = get_time_in_ms();
 	pthread_mutex_unlock(&philo->tlast);
@@ -68,7 +68,7 @@ void	eat(t_philo *philo)
 		return (pthread_mutex_unlock(&frks[l]), pthread_mutex_unlock(&frks[r]), \
 pthread_mutex_unlock(&philo->params->r_d_m), (void)0);
 	pthread_mutex_unlock(&philo->params->r_d_m);
-	w_log((get_time_in_ms() - params->start), l, E, params);
+	w_log(get_time_in_ms(), l, E, params);
 	ft_usleep(philo->params->eat, philo->params);
 	pthread_mutex_unlock(&frks[l]);
 	pthread_mutex_unlock(&frks[r]);
@@ -81,7 +81,9 @@ pthread_mutex_unlock(&philo->params->r_d_m), (void)0);
 void	single_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->params->forks[0]);
-	w_log(0, philo->id, F, philo->params);
+	pthread_mutex_lock(&philo->params->log);
+	printf("%d %d %s\n", 0, philo->id, F);
+	pthread_mutex_unlock(&philo->params->log);
 	ft_usleep(philo->params->die, philo->params);
 	philo->params->dead = 1;
 }
@@ -109,7 +111,7 @@ void	*start(void *job)
 		if (philo->params->dead || philo->params->full)
 			return (NULL);
 		pthread_mutex_unlock(&philo->params->full_m);
-		pthread_mutex_lock(&philo->params->r_d_m);
+		pthread_mutex_unlock(&philo->params->r_d_m);
 		eat(philo);
 	}
 	return (NULL);

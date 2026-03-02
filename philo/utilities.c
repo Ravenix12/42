@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:16:23 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:35:57 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:57:53 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ void	exit_condition(t_philo *philo)
 
 void	w_log(long long time, int id, char *message, t_params *params)
 {
+	long long	now;
+
 	pthread_mutex_lock(&params->log);
+	now = time - params->start;
 	if (!params->dead || message[0] == 'd')
-		printf("%d %d %s\n", (int)time, id, message);
+		printf("%d %d %s\n", (int)now, id, message);
 	pthread_mutex_unlock(&params->log);
 }
