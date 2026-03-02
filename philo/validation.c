@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:20:32 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/01 16:13:25 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:35:40 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep \
 	}
 	while (argv && argv[i])
 	{
-		if (!ft_isnum(argv[i]) || (argv[i][0] == '-') || ft_atoi(argv[i]) == -1)
+		if (!ft_isnum(argv[i]) || (argv[i][0] == '-') || \
+ft_atoi(argv[i]) == -1 || ft_atoi(argv[1]) == 0)
 		{
 			write(1, "One or more invalid inputs\n", 27);
 			return (0);

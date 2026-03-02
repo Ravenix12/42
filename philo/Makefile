@@ -6,13 +6,13 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 19:59:56 by smariapp          #+#    #+#              #
-#    Updated: 2026/03/01 16:26:18 by smariapp         ###   ########.fr        #
+#    Updated: 2026/03/02 19:54:36 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 LIBFLAGS = -lpthread
 HEADER  = philo.h
 

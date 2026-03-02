@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/01 21:23:38 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:30:43 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_params	*init_params(char **argv)
 	par->dead = 0;
 	par->full = 0;
 	pthread_mutex_init(&par->log, NULL);
+	pthread_mutex_init(&par->full_m, NULL);
+	pthread_mutex_init(&par->r_d_m, NULL);
 	if (argv[5])
 		par->eatnum = ft_atoi(argv[5]);
 	else
@@ -82,7 +84,8 @@ int	assign(t_philo *philo, int i, t_params *params)
 	philo->params = params;
 	philo->meals = 0;
 	philo->last = get_time_in_ms();
-	pthread_mutex_init(&philo->meal_last, NULL);
+	pthread_mutex_init(&philo->tlast, NULL);
+	pthread_mutex_init(&philo->meal, NULL);
 	code = pthread_create(&philo->thread, NULL, start, philo);
 	return (code);
 }

@@ -6,11 +6,24 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:16:23 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/01 21:00:30 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:35:57 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_usleep(long long ms, t_params *params)
+{
+	long long	start;
+
+	start = get_time_in_ms();
+	while (!params->dead)
+	{
+		if (get_time_in_ms() - start >= ms)
+			break ;
+		usleep(1000);
+	}
+}
 
 long long	get_time_in_ms(void)
 {
@@ -45,13 +58,6 @@ void	w_log(long long time, int id, char *message, t_params *params)
 {
 	pthread_mutex_lock(&params->log);
 	if (!params->dead || message[0] == 'd')
-	{
-		ft_putnbr_fd((int)time, 1);
-		write(1, " ", 1);
-		ft_putnbr_fd(id, 1);
-		write(1, " ", 1);
-		write(1, message, ft_strlen(message));
-		write(1, "\n", 1);
-	}
+		printf("%d %d %s\n", (int)time, id, message);
 	pthread_mutex_unlock(&params->log);
 }
