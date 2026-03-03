@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 15:16:40 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:37:58 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:38:35 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_params
 	int				full;
 	pthread_mutex_t	full_m;
 	pthread_mutex_t	r_d_m;
+	pthread_mutex_t	start_m;
 	pthread_t		monitor;
 	long long		start;
 	pthread_mutex_t	log;
@@ -65,7 +66,10 @@ t_philo		*init_philo(int n, t_params *params);
 long		ft_atoi(const char *nptr);
 
 void		*start(void *job);
+
 void		*monitor(void *job);
+long long	gs_start(t_params *params, int gs);
+void		wait_ready(t_params *params);
 
 long long	get_time_in_ms(void);
 void		exit_condition(t_philo *philo);

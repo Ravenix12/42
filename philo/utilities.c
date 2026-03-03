@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:16:23 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:57:53 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:52:21 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 void	ft_usleep(long long ms, t_params *params)
 {
 	long long	start;
+	int			dead;
 
 	start = get_time_in_ms();
-	while (!params->dead)
+	while (1)
 	{
+		pthread_mutex_lock(&params->r_d_m);
+		dead = params->dead;
+		pthread_mutex_unlock(&params->r_d_m);
+		if (dead)
+			break ;
 		if (get_time_in_ms() - start >= ms)
 			break ;
 		usleep(1000);
@@ -58,9 +64,12 @@ void	w_log(long long time, int id, char *message, t_params *params)
 {
 	long long	now;
 
-	pthread_mutex_lock(&params->log);
-	now = time - params->start;
-	if (!params->dead || message[0] == 'd')
-		printf("%d %d %s\n", (int)now, id, message);
-	pthread_mutex_unlock(&params->log);
+	now = time - gs_start(params, 1);
+	pthread_mutex_lock(&params->r_d_m);
+    dead = params->dead;
+    pthread_mutex_unlock(&params->r_d_m);
+    pthread_mutex_lock(&params->log);
+    if (!dead || message[0] == 'd')
+        printf("%d %d %s\n", (int)now, id, message);
+    pthread_mutex_unlock(&params->log);
 }

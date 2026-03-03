@@ -3,14 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 16:17:02 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:53:34 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:40:46 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	wait_ready(t_params *params)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&params->r_d_m);
+		if (params->ready)
+		{
+			pthread_mutex_unlock(&params->r_d_m);
+			break ;
+		}
+		pthread_mutex_unlock(&params->r_d_m);
+		usleep(100);
+	}
+}
+
+//get: 1, set: 0
+long long	gs_start(t_params *params, int gs)
+{
+	long long	start;
+
+	if (gs)
+	{
+		pthread_mutex_lock(&params->start_m);
+		start = params->start;
+		pthread_mutex_unlock(&params->start_m);
+		return (start);
+	}
+	else
+	{
+		pthread_mutex_lock(&params->start_m);
+		params->start = get_time_in_ms();
+		pthread_mutex_unlock(&params->start_m);
+		return (0);
+	}
+}
 
 int	dead_or_alive(t_philo *philos)
 {
@@ -69,17 +105,12 @@ void	*monitor(void *job)
 {
 	t_philo	*philos;
 	t_philo	*head;
-	int		i;
 
 	head = (t_philo *)job;
-	pthread_mutex_lock(&head->params->r_d_m);
-	while (!head->params->ready)
-		usleep(100);
-	pthread_mutex_unlock(&head->params->r_d_m);
+	wait_ready(head->params);
 	while (1)
 	{
 		philos = head;
-		i = 0;
 		if (dead_or_alive(philos) == -1)
 			return (NULL);
 		if (head->params->eatnum != -1)

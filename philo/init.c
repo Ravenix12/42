@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:30:43 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 10:09:38 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_philo	*init_philo(int n, t_params *params)
 		i++;
 	}
 	pthread_create(&params->monitor, NULL, monitor, head);
-	return (params->start = get_time_in_ms(), params->ready = 1, head);
+	return (gs_start(params, 0), pthread_mutex_lock(&params->r_d_m), \
+params->ready = 1, pthread_mutex_unlock(&params->r_d_m), head);
 }

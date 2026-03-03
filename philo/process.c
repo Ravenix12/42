@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:41:51 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:56:19 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 12:00:12 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	sleep_think(t_philo *philo)
 	t_params	*params;
 
 	params = philo->params;
-	w_log(get_time_in_ms(), philo->id, S, philo->params);
-	ft_usleep(philo->params->sleep, philo->params);
-	w_log(get_time_in_ms(), philo->id, T, philo->params);
+	w_log(get_time_in_ms(), philo->id, S, params);
+	ft_usleep(philo->params->sleep, params);
+	w_log(get_time_in_ms(), philo->id, T, params);
 	usleep(500);
 }
 
@@ -36,7 +36,7 @@ void	get_forks(t_philo *philo, pthread_mutex_t *forks)
 	if (l > r)
 	{
 		pthread_mutex_lock(&forks[r]);
-		w_log(get_time_in_ms(), l, F, philo->params);
+		w_log(get_time_in_ms(), l, F, params);
 		pthread_mutex_lock(&forks[l]);
 	}
 	else
@@ -85,7 +85,10 @@ void	single_philo(t_philo *philo)
 	printf("%d %d %s\n", 0, philo->id, F);
 	pthread_mutex_unlock(&philo->params->log);
 	ft_usleep(philo->params->die, philo->params);
+	pthread_mutex_unlock(&philo->params->forks[0]);
+	pthread_mutex_lock(&philo->params->r_d_m);
 	philo->params->dead = 1;
+	pthread_mutex_unlock(&philo->params->r_d_m);
 }
 
 void	*start(void *job)
@@ -93,23 +96,21 @@ void	*start(void *job)
 	t_philo	*philo;
 
 	philo = (t_philo *)job;
-	//pthread_mutex_lock(&philo->params->r_d_m);
-	while (!philo->params->ready)
-		usleep(100);
-	//pthread_mutex_unlock(&philo->params->r_d_m);
+	wait_ready(philo->params);
 	if (philo->next == philo)
 		return (single_philo(philo), NULL);
 	pthread_mutex_lock(&philo->tlast);
-	philo->last = philo->params->start;
+	philo->last = gs_start(philo->params, 1);
 	pthread_mutex_unlock(&philo->tlast);
 	if (philo->id % 2 == 0)
 		usleep(philo->params->eat * 400);
 	while (1)
 	{
-		pthread_mutex_lock(&philo->params->full_m);
 		pthread_mutex_lock(&philo->params->r_d_m);
+		pthread_mutex_lock(&philo->params->full_m);
 		if (philo->params->dead || philo->params->full)
-			return (NULL);
+			return (pthread_mutex_unlock(&philo->params->full_m), \
+pthread_mutex_unlock(&philo->params->r_d_m), NULL);
 		pthread_mutex_unlock(&philo->params->full_m);
 		pthread_mutex_unlock(&philo->params->r_d_m);
 		eat(philo);
