@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:41:51 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/03 12:00:12 by shivani          ###   ########.fr       */
+/*   Updated: 2026/03/03 19:49:09 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sleep_think(t_philo *philo)
 	w_log(get_time_in_ms(), philo->id, S, params);
 	ft_usleep(philo->params->sleep, params);
 	w_log(get_time_in_ms(), philo->id, T, params);
-	usleep(500);
+	ft_usleep(philo->params->think, philo->params);
 }
 
 //everyone picks up lower fork first
@@ -33,7 +33,7 @@ void	get_forks(t_philo *philo, pthread_mutex_t *forks)
 	params = philo->params;
 	l = philo->id;
 	r = philo->next->id;
-	if (l > r)
+	if (l % 2)
 	{
 		pthread_mutex_lock(&forks[r]);
 		w_log(get_time_in_ms(), l, F, params);
@@ -103,7 +103,7 @@ void	*start(void *job)
 	philo->last = gs_start(philo->params, 1);
 	pthread_mutex_unlock(&philo->tlast);
 	if (philo->id % 2 == 0)
-		usleep(philo->params->eat * 400);
+		usleep(philo->params->eat * 700);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->params->r_d_m);

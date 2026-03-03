@@ -6,11 +6,34 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:20:32 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/02 21:35:40 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:45:19 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long	ft_atoi(const char *nptr)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr == '-')
+		sign = -1;
+	if (*nptr == '-' || *nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = (result * 10) + *nptr - '0';
+		if (result > 2147483647)
+			return (-1);
+		nptr++;
+	}
+	return (sign * result);
+}
 
 int	ft_isdigit(char c)
 {

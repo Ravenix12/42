@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:16:23 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/03 11:52:21 by shivani          ###   ########.fr       */
+/*   Updated: 2026/03/03 18:34:33 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ void	exit_condition(t_philo *philo)
 void	w_log(long long time, int id, char *message, t_params *params)
 {
 	long long	now;
+	int			dead;
 
 	now = time - gs_start(params, 1);
 	pthread_mutex_lock(&params->r_d_m);
-    dead = params->dead;
-    pthread_mutex_unlock(&params->r_d_m);
-    pthread_mutex_lock(&params->log);
-    if (!dead || message[0] == 'd')
-        printf("%d %d %s\n", (int)now, id, message);
-    pthread_mutex_unlock(&params->log);
+	dead = params->dead;
+	pthread_mutex_unlock(&params->r_d_m);
+	pthread_mutex_lock(&params->log);
+	if (!dead || message[0] == 'd')
+		printf("%d %d %s\n", (int)now, id, message);
+	pthread_mutex_unlock(&params->log);
 }

@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 16:52:24 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/03 10:09:38 by shivani          ###   ########.fr       */
+/*   Updated: 2026/03/03 19:48:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-long	ft_atoi(const char *nptr)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
-		nptr++;
-	if (*nptr == '-')
-		sign = -1;
-	if (*nptr == '-' || *nptr == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		result = (result * 10) + *nptr - '0';
-		if (result > 2147483647)
-			return (-1);
-		nptr++;
-	}
-	return (sign * result);
-}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -48,14 +25,13 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (ptr);
 }
 
-//forks: setting to 0-> 0 means available
 t_params	*init_params(char **argv)
 {
 	t_params	*par;
 	int			i;
 
 	i = 0;
-	par = malloc(sizeof(t_params));
+	par = ft_calloc(sizeof(t_params), 1);
 	par->philo = ft_atoi(argv[1]);
 	par->die = ft_atoi(argv[2]);
 	par->eat = ft_atoi(argv[3]);
@@ -63,9 +39,9 @@ t_params	*init_params(char **argv)
 	par->forks = (pthread_mutex_t *)malloc(par->philo * sizeof(*par->forks));
 	while (i < par->philo)
 		pthread_mutex_init(&par->forks[i++], NULL);
-	par->ready = 0;
-	par->dead = 0;
-	par->full = 0;
+	par->think = (par->die - par->eat - par->sleep) / 2;
+	if (par->think < 0)
+		par->think = 0;
 	pthread_mutex_init(&par->log, NULL);
 	pthread_mutex_init(&par->full_m, NULL);
 	pthread_mutex_init(&par->r_d_m, NULL);

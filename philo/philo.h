@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 15:16:40 by smariapp          #+#    #+#             */
-/*   Updated: 2026/03/03 11:38:35 by shivani          ###   ########.fr       */
+/*   Updated: 2026/03/03 19:53:58 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define E "is eating"
 # define S "is sleeping"
 # define T "is thinking"
-# define D "dead"
+# define D "died"
 
 # include <pthread.h>
 # include <stdio.h>
@@ -44,6 +44,7 @@ typedef struct s_params
 	pthread_t		monitor;
 	long long		start;
 	pthread_mutex_t	log;
+	long long		think;
 }	t_params;
 
 typedef struct s_philo
