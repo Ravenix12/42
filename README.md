@@ -10,8 +10,11 @@ Completed with bonus
 Completed
 - Printf
 - Push-swap
-###
-In Progress
 - Minishell
 - Philo
+###
+In Progress
+- CPP00
+- Cub3D
+
 
