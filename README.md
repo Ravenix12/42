@@ -12,9 +12,9 @@ Completed
 - Push-swap
 - Minishell
 - Philo
+- Cub3D
 ###
 In Progress
 - CPP00
-- Cub3D
 
 
