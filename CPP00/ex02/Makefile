@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/03/14 15:37:26 by smariapp          #+#    #+#              #
-#    Updated: 2026/06/20 18:44:59 by smariapp         ###   ########.fr        #
+#    Created: 2026/06/18 21:28:57 by smariapp          #+#    #+#              #
+#    Updated: 2026/06/20 18:44:50 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = Account
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = megaphone.cpp
+SRC = Account.cpp tests.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
