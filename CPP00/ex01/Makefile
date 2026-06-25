@@ -6,14 +6,14 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/14 17:17:37 by smariapp          #+#    #+#              #
-#    Updated: 2026/03/17 19:12:35 by smariapp         ###   ########.fr        #
+#    Updated: 2026/06/20 18:44:55 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
-CC = g++
+CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Contact.cpp PhoneBook.cpp
+SRC = Contact.cpp PhoneBook.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

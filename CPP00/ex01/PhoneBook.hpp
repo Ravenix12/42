@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/14 15:37:14 by smariapp          #+#    #+#             */
-/*   Updated: 2026/06/16 19:46:28 by smariapp         ###   ########.fr       */
+/*   Created: 2026/06/16 20:13:07 by smariapp          #+#    #+#             */
+/*   Updated: 2026/06/20 15:14:44 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#include "Contact.hpp"
+#include <string>
+#include <iomanip>
+#include <sstream>
 
-int main(int argc, char **argv) {
-	if (argc == 1) {
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	argv++;
-	while (*argv) {
-		std::string s = *argv;
-		for (int i = 0; i < (int)s.size(); i++) {
-			s[i] = std::toupper(s[i]);
-		}
-		std::cout << s;
-		argv++;
-	}
-	std::cout << "\n";
-	return 0;
-}
+class PhoneBook {
+	public:
+		void	addContact();
+		void	searchContact();
+		PhoneBook();
 
+	private:
+		Contact		contacts[8];
+		int 		last;
+		int			full;
+		std::string fillField(std::string str);
+		bool 		isNumeric(const std::string str);
+		void		writeName(std::string name);
+		void		display();
+};
