@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/06/25 09:52:57 by smariapp          #+#    #+#              #
-#    Updated: 2026/06/25 10:42:00 by smariapp         ###   ########.fr        #
+#    Created: 2026/06/25 11:33:39 by smariapp          #+#    #+#              #
+#    Updated: 2026/06/25 12:11:50 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = Unnecessary_violence
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRC = Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -35,4 +35,3 @@ re: fclean all
 it: re clean
 
 .PHONY: all clean fclean re it
-

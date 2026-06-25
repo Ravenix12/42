@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 09:53:17 by smariapp          #+#    #+#             */
-/*   Updated: 2026/06/25 11:17:33 by smariapp         ###   ########.fr       */
+/*   Created: 2026/06/25 15:18:03 by smariapp          #+#    #+#             */
+/*   Updated: 2026/06/25 18:04:41 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
-
 #include <string>
 #include <iostream>
+#include "Harl.hpp"
 
-class Zombie{
-	public:
-	Zombie(std::string name);
-	Zombie( void );
-	~Zombie();
-	void announce( void );
-
-	private:
-	std::string name;
-};
-
-void randomChump(std::string name);
-Zombie* newZombie(std::string name);
-
-#endif
+int main()
+{
+	Harl harl = Harl();
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+	harl.complain("PSPSPPSPP");
+}

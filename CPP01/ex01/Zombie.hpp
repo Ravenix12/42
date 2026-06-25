@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 09:53:17 by smariapp          #+#    #+#             */
-/*   Updated: 2026/06/25 11:17:33 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/06/25 11:25:01 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ class Zombie{
 	Zombie( void );
 	~Zombie();
 	void announce( void );
+	void setName(std::string zombName);
+
 
 	private:
 	std::string name;
 };
 
-void randomChump(std::string name);
-Zombie* newZombie(std::string name);
+Zombie* zombieHorde( int N, std::string name );
 
 #endif

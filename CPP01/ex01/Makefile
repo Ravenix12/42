@@ -6,14 +6,14 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/25 09:52:57 by smariapp          #+#    #+#              #
-#    Updated: 2026/06/25 10:42:00 by smariapp         ###   ########.fr        #
+#    Updated: 2026/06/25 11:19:06 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = Moar_brainz!
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRC = Zombie.cpp zombieHorde.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
