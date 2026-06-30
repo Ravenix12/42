@@ -6,6 +6,8 @@ Completed with bonus
 - Get Next line
 - Pipex
 - so-long
+- CPP00
+- CPP01
 ###
 Completed
 - Printf
@@ -15,6 +17,7 @@ Completed
 - Cub3D
 ###
 In Progress
-- CPP00
+- CPP02
+  
 
 
