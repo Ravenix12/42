@@ -6,11 +6,11 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/25 11:33:39 by smariapp          #+#    #+#              #
-#    Updated: 2026/06/25 18:00:58 by smariapp         ###   ########.fr        #
+#    Updated: 2026/06/30 20:31:33 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl
+NAME = harlFilter
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = Harl.cpp main.cpp
