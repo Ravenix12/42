@@ -6,7 +6,7 @@
 /*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:46:16 by smariapp          #+#    #+#             */
-/*   Updated: 2026/07/10 18:53:00 by shivani          ###   ########.fr       */
+/*   Updated: 2026/07/11 15:10:40 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main(void)
 {
 	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
+	Fixed const b(10);
 	Fixed const c(15);
 	Fixed const d(1);
 

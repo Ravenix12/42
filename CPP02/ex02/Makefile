@@ -6,11 +6,11 @@
 #    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/30 20:46:18 by smariapp          #+#    #+#              #
-#    Updated: 2026/07/10 13:37:11 by shivani          ###   ########.fr        #
+#    Updated: 2026/07/10 17:26:17 by shivani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed1
+NAME = fixed2
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = Fixed.cpp main.cpp

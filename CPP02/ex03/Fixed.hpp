@@ -6,7 +6,7 @@
 /*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:46:12 by smariapp          #+#    #+#             */
-/*   Updated: 2026/07/10 17:21:44 by shivani          ###   ########.fr       */
+/*   Updated: 2026/07/11 15:27:37 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ class Fixed{
 
 	private:
 		int raw;
-		static const int fractionalBits = 8;
+		static const int fractionalBits;
 };
 
 std::ostream &operator<<(std::ostream &o, Fixed const &fixed);

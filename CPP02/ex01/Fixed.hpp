@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:46:12 by smariapp          #+#    #+#             */
-/*   Updated: 2026/06/30 21:35:20 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/07/11 15:26:52 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <cmath>
 
 class Fixed{
 	public:
@@ -34,8 +35,9 @@ class Fixed{
 	
 	private:
 		int raw;
-		static const int fractionalBits = 8;
-		//add insertion overload
+		static const int fractionalBits;
 };
+
+std::ostream &operator<<(std::ostream &o, Fixed const &fixed);
 
 #endif

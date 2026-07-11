@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shivani <shivani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 20:46:14 by smariapp          #+#    #+#             */
-/*   Updated: 2026/06/30 21:31:22 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/07/11 15:29:52 by shivani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+const int Fixed::fractionalBits = 8;
 Fixed::Fixed() : raw(0) {
 	std::cout << "Default constructor called\n";
 }

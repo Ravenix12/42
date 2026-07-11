@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
+#    By: shivani <shivani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/30 20:46:18 by smariapp          #+#    #+#              #
-#    Updated: 2026/06/30 20:46:49 by smariapp         ###   ########.fr        #
+#    Updated: 2026/07/10 13:37:05 by shivani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = fixed0
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = Fixed.cpp main.cpp
