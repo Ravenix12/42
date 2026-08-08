@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 20:51:08 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/01 16:26:57 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/08/01 17:31:33 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+
+#ifndef DOG_HPP
+#define DOG_HPP
 
 #include <string>
 #include <iostream>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class Animal{
+class Dog: public Animal{
 	public :
-	Animal();
-	Animal(std::string _type);
-	virtual ~Animal();
-	Animal &operator=(const Animal &other);
-	Animal(const Animal &dup);
+	Dog();
+	~Dog();
+	Dog &operator=(const Dog &other);
+	Dog(const Dog &dup);
 
-	virtual void makeSound() const;
-	std::string getType() const;
-
-	protected:
+	void makeSound() const;
+	void setIdea(int index, std::string idea);
+	std::string getIdea(int index) const;
+	
+	private:
 	std::string type;
+	Brain *brain;
 };
 
 #endif

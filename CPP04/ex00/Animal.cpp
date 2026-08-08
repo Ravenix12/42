@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 20:38:52 by smariapp          #+#    #+#             */
-/*   Updated: 2026/07/29 21:42:04 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/08/01 16:29:11 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ Animal::Animal(){
 	std::cout << "Animal constructor called\n";
 	type = "unknown";
 }
+Animal::Animal(std::string _type){
+	std::cout << "Animal constructor called\n";
+	type = _type;
+}
 Animal::~Animal(){
-	std::cout << "Animal " << type << " destructor called\n";
+	std::cout << "Animal destructor called\n";
 }
 Animal &Animal::operator=(const Animal &other)
 {

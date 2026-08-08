@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 20:51:08 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/01 16:26:57 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/08/01 17:42:45 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Animal{
 	Animal &operator=(const Animal &other);
 	Animal(const Animal &dup);
 
-	virtual void makeSound() const;
+	virtual void makeSound() const = 0;
 	std::string getType() const;
 
 	protected:
