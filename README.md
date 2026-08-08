@@ -1,7 +1,6 @@
 # 42 Projects 
 
-###
-Completed with bonus
+### Completed with bonus
 - Libft
 - Get Next line
 - Pipex
@@ -10,8 +9,7 @@ Completed with bonus
 - CPP01
 - CPP02
 - CPP03
-###
-Completed
+### Completed
 - Printf
 - Push-swap
 - Minishell
@@ -19,7 +17,7 @@ Completed
 - Cub3D
 - CPP04
 - netPractice
-###
+### In progress
 - CPP05
 
   
