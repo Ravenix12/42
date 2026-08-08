@@ -8,6 +8,8 @@ Completed with bonus
 - so-long
 - CPP00
 - CPP01
+- CPP02
+- CPP03
 ###
 Completed
 - Printf
@@ -15,9 +17,11 @@ Completed
 - Minishell
 - Philo
 - Cub3D
+- CPP04
+- netPractice
 ###
-In Progress
-- CPP02
+- CPP05
+
   
 
 
