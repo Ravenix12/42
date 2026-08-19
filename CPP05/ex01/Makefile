@@ -6,15 +6,15 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/08 18:05:21 by smariapp          #+#    #+#              #
-#    Updated: 2026/08/08 18:06:13 by smariapp         ###   ########.fr        #
+#    Updated: 2026/08/19 22:12:17 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = form
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-INC = Bureaucrat.hpp
-SRC = Bureaucrat.cpp main.cpp
+INC = Bureaucrat.hpp Form.hpp
+SRC = Bureaucrat.cpp Form.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

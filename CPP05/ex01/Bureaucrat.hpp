@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:02:30 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/18 22:04:43 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/08/19 22:11:28 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include "Form.hpp"
 
+class Form;
 class Bureaucrat{
 	public:
 	Bureaucrat();
 	Bureaucrat(std::string const name, int grade);
-	virtual ~Bureaucrat();
+	~Bureaucrat();
 	Bureaucrat &operator=(const Bureaucrat &other);
 	Bureaucrat(const Bureaucrat &dup);
 
@@ -29,6 +31,8 @@ class Bureaucrat{
 	int getGrade() const;
 	void increaseGrade();
 	void decreaseGrade();
+
+	void signForm(Form &form);
 	
 	private:
 	std::string const name;

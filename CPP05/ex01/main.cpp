@@ -6,55 +6,42 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:04:12 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/18 22:00:54 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/08/19 22:06:53 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-void test_initialise(int grade){
+void test_initialise(int sgrade, int egrade){
 	try {
-		Bureaucrat X("X", grade);
-		std::cout << "Introducing " << X << std::endl;
+		Form X("X", sgrade, egrade);
+		std::cout << X << std::endl;
 	}
 	catch (const std::exception& e) {
         std::cout << "Caught: " << e.what() << std::endl;
     }
 }
 
-void test_increase(int grade){
-	Bureaucrat Y("Y", grade);
+void test_signing(int bgrade, int sgrade){
+	Bureaucrat Y("Y", bgrade);
+	Form Z("Z", sgrade, 1);
 	try {
-	Y.increaseGrade();
-	std::cout << Y << std::endl;
+		Y.signForm(Z);
 	}
 	catch (const std::exception& e) {
-        std::cout << "Can't increase: " << e.what() << std::endl;
-    }
-}
-
-void test_decrease(int grade){
-	Bureaucrat Z("Z", grade);
-	try {
-	Z.decreaseGrade();
-	std::cout << Z << std::endl;
-	}
-	catch (const std::exception& e) {
-        std::cout << "Can't decrease: " << e.what() << std::endl;
+        //std::cout << "Can't sign: " << e.what() << std::endl;
     }
 }
 
 int main(){
-	test_initialise(1);
-	test_initialise(150);
-	test_initialise(151);
-	test_initialise(0);
+	test_initialise(150,1);
+	test_initialise(151, 0);
 	std::cout << "\n-----------------------\n\n";
-	test_increase(1);
-	test_increase(150);
-	std::cout << "\n-----------------------\n\n";
-	test_decrease(1);
-	test_decrease(150);
+	test_signing(1,1); //pass
+	test_signing(150,1); //fail
+	test_signing(1,150); //pass
+
 	
 	return 0;
 }
