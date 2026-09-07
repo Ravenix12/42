@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:36 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/27 21:57:38 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/07 21:11:32 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class AForm{
 
 	AForm();
 	AForm(std::string name, int signGrade, int execGrade);
-	~AForm();
+	virtual ~AForm();
 	AForm &operator=(const AForm &other);
 	AForm(const AForm &dup);
 

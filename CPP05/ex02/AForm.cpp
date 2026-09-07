@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:26 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/27 22:03:24 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/07 21:11:42 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int AForm::getExecGrade() const{
 	return execGrade;
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& b){
+std::ostream& operator<<(std::ostream& os, const AForm& b){
 	os << "Form name: " << b.getName() << ", signGrade: " << b.getSignGrade() << ", execGrade: " << b.getExecGrade() << ". This form is " << (b.getIsSigned() ? "Signed" : "Unsigned");
 	return os;
 }
