@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:02:30 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/07 20:31:31 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:37:48 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <exception>
 #include "AForm.hpp"
 
-class Form;
+class AForm;
 class Bureaucrat{
 	public:
 	Bureaucrat();

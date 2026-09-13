@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 21:30:35 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/07 21:14:31 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:38:50 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,39 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	std::cout << "Copy assignment operator called\n";
 	if (this != &other)
+	{
+		AForm::operator=(other);
 		this->target = other.target;
-    return *this;
+	}
+	return *this;
 }
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &dup) : AForm(dup){
 	std::cout << "ShrubberyCreationForm Copy constructor called\n";
 }
+
+void ShrubberyCreationForm::action() const {
+    std::string filename = target + "_shrubbery.txt";
+    std::ofstream file(filename.c_str());
+
+    if (!file.is_open())
+    {
+        std::cout << "Could not create shrubbery file for " << target << std::endl;
+        return ;
+    }
+
+    file << "        &&&&&&&&\n"
+         << "     &&&&&&&&&&&&&&\n"
+         << "   &&&&o&&&&&&&&&&&&&\n"
+         << " &&&&&&oo&&&&&&&&&&&&&&\n"
+         << "&&&&&&&&&&&&&&&&&&o&&&&&\n"
+         << "  &&&&&&&&&&&&&&&o&&&&\n"
+         << "     &&&&&&&&&&&&&&\n"
+         << "        &&&&&&&&\n"
+         << "           ||\n"
+         << "           ||\n"
+         << "         ~~~~~~~\n";
+
+    file.close();
+}
+
 

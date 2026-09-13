@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:36 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/07 21:11:32 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:37:32 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,19 @@ class AForm{
 		const char* what() const throw();
 	};
 
+	class FormNotSignedException : public std::exception{
+		public:
+        const char* what() const throw();	
+	};
+
 	std::string const getName() const;
 	bool getIsSigned() const;
 	int getSignGrade() const;
 	int getExecGrade() const;	
 
 	void beSigned(Bureaucrat &bureaucrat);
-	virtual void execute(Bureaucrat const &executor) const = 0;
+	void execute(Bureaucrat const &executor) const;
+	virtual void action() const = 0;
 	bool canBeExecutedBy(Bureaucrat const &executor) const;	
 	private:
 	std::string const name;
@@ -56,6 +62,6 @@ class AForm{
 	
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& b);
+std::ostream& operator<<(std::ostream& os, const AForm& b);
 
 #endif

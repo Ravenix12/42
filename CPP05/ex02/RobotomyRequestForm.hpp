@@ -6,13 +6,14 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 21:35:19 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/07 21:22:54 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:39:48 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 #include "AForm.hpp"
+#include <stdlib.h>
 
 class RobotomyRequestForm : public AForm {
 	public:
@@ -22,7 +23,7 @@ class RobotomyRequestForm : public AForm {
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 	RobotomyRequestForm(const RobotomyRequestForm &dup);
 	
-	void execute(RobotomyRequestForm const &executor) const;
+	void action() const;
 	
 	private:
 	std::string target;
