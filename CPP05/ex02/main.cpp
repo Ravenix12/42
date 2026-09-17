@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:04:12 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/13 18:44:37 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:09:56 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,6 @@ void test_execute_polymorphic_array()
 
 int main()
 {
-	test_signing(1, 25);   // pass, grade high enough
-	test_signing(150, 25); // fail, grade too low
-
-	std::cout << "\n-----------------------\n\n";
-
 	test_execute_unsigned(1);        // should throw FormNotSignedException
 	test_execute_grade_too_low(20);  // signs fine (20<=25), fails execute (20>5)
 	test_execute_success_pardon();

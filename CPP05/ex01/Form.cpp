@@ -6,17 +6,17 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:26 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/19 22:11:58 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:20:33 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 // def constructor needs to init all in const values in constructor -> form with highst scrutiny created
-Form::Form() : name("Default"), signGrade(1), execGrade(1) {
+Form::Form() : name("Default"), signGrade(1), execGrade(1), isSigned(false) {
 }
 	
-Form::Form(std::string name, int signGrade, int execGrade):name(name), signGrade(signGrade), execGrade(execGrade){
+Form::Form(std::string name, int signGrade, int execGrade):name(name), signGrade(signGrade), execGrade(execGrade), isSigned(false){
 	std::cout << "Form constructor called\n";
 	if (signGrade < 1 || execGrade < 1)
 		throw GradeTooHighException();

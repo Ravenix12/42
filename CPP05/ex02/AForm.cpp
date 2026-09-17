@@ -6,25 +6,25 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:26 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/13 18:41:17 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:36:51 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
 // def constructor needs to init all in const values in constructor -> form with highst scrutiny created
-AForm::AForm() : name("Default"), signGrade(1), execGrade(1) {
+AForm::AForm() : name("Default"), signGrade(1), execGrade(1), isSigned(false) {
 }
 	
-AForm::AForm(std::string name, int signGrade, int execGrade):name(name), signGrade(signGrade), execGrade(execGrade){
-	std::cout << "Form constructor called\n";
+AForm::AForm(std::string name, int signGrade, int execGrade):name(name), signGrade(signGrade), execGrade(execGrade), isSigned(false){
+	//std::cout << "Form constructor called\n";
 	if (signGrade < 1 || execGrade < 1)
 		throw GradeTooHighException();
 	if (signGrade > 150 || execGrade > 150)
 		throw GradeTooLowException();
 }
 AForm::~AForm(){
-	std::cout << "Form destructor called\n";
+	//std::cout << "Form destructor called\n";
 }
 AForm &AForm::operator=(const AForm &other)
 {

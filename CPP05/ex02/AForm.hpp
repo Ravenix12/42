@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:36 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/13 18:37:32 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:21:36 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ class AForm{
 	bool canBeExecutedBy(Bureaucrat const &executor) const;	
 	private:
 	std::string const name;
-	bool isSigned;
 	int const signGrade;
 	int const execGrade;
-	
+	bool isSigned;	
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& b);

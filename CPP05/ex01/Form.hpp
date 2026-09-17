@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:36 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/19 22:10:22 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:21:23 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ class Form{
 		
 	private:
 	std::string const name;
-	bool isSigned;
 	int const signGrade;
 	int const execGrade;
-	
+	bool isSigned;
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& b);

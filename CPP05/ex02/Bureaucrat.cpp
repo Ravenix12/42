@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:02:37 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/07 20:34:07 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/17 21:17:46 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ Bureaucrat::Bureaucrat(){
 	std::cout << "Bureaucrat constructor called\n";
 }
 Bureaucrat::Bureaucrat(std::string name, int grade):name(name), grade(grade){
-	std::cout << "Bureaucrat constructor called\n";
+	//std::cout << "Bureaucrat constructor called\n";
 	if (grade < 1)
 		throw GradeTooHighException();
 	if (grade > 150)
 		throw GradeTooLowException();
 }
 Bureaucrat::~Bureaucrat(){
-	std::cout << "Bureaucrat destructor called\n";
+	//std::cout << "Bureaucrat destructor called\n";
 }
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
