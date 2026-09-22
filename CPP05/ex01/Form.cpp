@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/18 22:02:26 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/17 21:20:33 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/22 20:42:39 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ Form::Form(const Form &dup) : name(dup.name), signGrade(dup.signGrade), execGrad
 }
 
 const char* Form::GradeTooHighException::what() const throw() {
-    return "Grade is too high";
+    return "grade is too high";
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-    return "Grade is too low";
+    return "grade is too low";
 }
 
 std::string const Form::getName() const{

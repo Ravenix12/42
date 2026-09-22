@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 18:02:37 by smariapp          #+#    #+#             */
-/*   Updated: 2026/08/19 22:14:59 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/22 20:42:29 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void Bureaucrat::decreaseGrade(){
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return "Grade is too high";
+    return "grade is too high";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return "Grade is too low";
+    return "grade is too low";
 }
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &bureaucrat)

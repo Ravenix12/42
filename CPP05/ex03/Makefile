@@ -6,15 +6,15 @@
 #    By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/08 18:05:21 by smariapp          #+#    #+#              #
-#    Updated: 2026/09/22 20:49:17 by smariapp         ###   ########.fr        #
+#    Updated: 2026/09/22 21:32:59 by smariapp         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = form
+NAME = intern
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-INC = Bureaucrat.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp AForm.hpp
-SRC = Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp AForm.cpp main.cpp
+INC = Intern.hpp Bureaucrat.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp AForm.hpp
+SRC = Intern.cpp Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp AForm.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
