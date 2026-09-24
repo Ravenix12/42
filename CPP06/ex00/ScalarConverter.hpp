@@ -6,7 +6,7 @@
 /*   By: smariapp <smariapp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 21:58:10 by smariapp          #+#    #+#             */
-/*   Updated: 2026/09/22 22:15:36 by smariapp         ###   ########.fr       */
+/*   Updated: 2026/09/24 21:35:02 by smariapp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ class ScalarConverter{
 	public:
 	static int convert(std::string const &literal);
 };
+
+void special(std::string const &literal);
 
 #endif
